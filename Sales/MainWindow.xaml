@@ -5,8 +5,119 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sales"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+       Title="البرنامج المحاسبي  " Height="500" Width="700" 
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" 
+        FlowDirection="RightToLeft" 
+        Background="#F5F5DD"
         
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Ribbon x:Name="RibbonWin" 
+                FontFamily="Times New Roman"
+                FontSize="18"  Grid.Row="0" 
+                FontWeight="Bold"  Background="#e7e7c7">
+            <Ribbon.ApplicationMenu >
+                <RibbonApplicationMenu Width="0">
+
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+
+
+            <RibbonTab x:Name="tabFile" Header="مـلـف" FontWeight="Normal"   IsSelected="True" Background="AliceBlue" >
+                <RibbonGroup Header="إعدادات عامة" >
+
+                    <RibbonGroup.GroupSizeDefinitions>
+                        <RibbonGroupSizeDefinition>
+                        </RibbonGroupSizeDefinition>
+                    </RibbonGroup.GroupSizeDefinitions>
+
+
+                    <RibbonButton Name="rbAddUser" 
+                                  MinWidth="100"  
+                                  Label="مستخدمي النظام"
+                                  LargeImageSource="Images/Users.png"  
+                                   Tag="frmUsers"
+                                  Margin="0 0 0 0"
+                                  CommandParameter ="مستخدمي النظام"
+                                  Content="Images/Users.png"  
+                                  Click="rbAddUser_Click" Height="66"  
+                                  >
+
+                        <RibbonButton.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC1ECF5" Offset="0"/>
+                                <GradientStop Color="#FF1753D3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RibbonButton.BorderBrush>
+
+                    </RibbonButton>
+
+                    <RibbonButton Name="rbDefineTemplet" 
+                                  MinWidth="100"  
+                                  Label="تعريف النماذج" 
+                                  LargeImageSource="Images/DefineTempl.png"
+                                  Margin="5 0 0 0" 
+                                  Click="rbDefineTemplet_Click" 
+                                  Tag="frmFormTemplet"
+                                    CommandParameter ="تعريف النماذج" 
+                                  Content="Images/DefineTempl.png"
+                                  >
+                        <RibbonButton.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC1ECF5" Offset="0"/>
+                                <GradientStop Color="#FF1753D3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RibbonButton.BorderBrush>
+                    </RibbonButton>
+
+                    <RibbonButton Name="rbDefineForms"  
+                                  MinWidth="100"  
+                                  Label="إدارة النماذج" 
+                                  LargeImageSource="Images/ManageTempl.png" 
+                                  Margin="5 0 0 0"
+                                  Click="rbDefineForms_Click" 
+                                  Tag="frmTempletManagement"
+                                    CommandParameter ="إدارة النماذج" 
+                                  Content="Images/ManageTempl.png"
+                                  >
+                        <RibbonButton.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC1ECF5" Offset="0"/>
+                                <GradientStop Color="#FF1753D3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RibbonButton.BorderBrush>
+                    </RibbonButton>
+
+                    <RibbonButton Name="rbChangePassword"  MinWidth="100"   Label="تغيير كلمة السر" LargeImageSource="Images/Password.png" Margin="5 0 0 0">
+                        <RibbonButton.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC1ECF5" Offset="0"/>
+                                <GradientStop Color="#FF1753D3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RibbonButton.BorderBrush>
+                    </RibbonButton>
+                    <RibbonButton  Name="rbLogout" MinWidth="100"   Label="تسجيل الخروج" LargeImageSource="Images/Logout.png" Margin="5 0 0 0" Click="rbLogout_Click">
+                        <RibbonButton.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC1ECF5" Offset="0"/>
+                                <GradientStop Color="#FF1753D3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RibbonButton.BorderBrush>
+
+                    </RibbonButton>
+
+                </RibbonGroup>
+
+            </RibbonTab>
+
+
+
+        </Ribbon>
+
     </Grid>
 </Window>

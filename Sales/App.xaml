@@ -4,6 +4,404 @@
              xmlns:local="clr-namespace:Sales"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
+        <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background"  Value="#1a2421"/>
+            <Setter Property="Foreground" Value="#C46210" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontFamily" Value="Calibri" />
+
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="MinHeight" Value="30" />
+            <Setter Property="Cursor" Value="Hand" />
+
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+            <Setter Property="BorderBrush" Value="#C46210"/>
+        </Style>
+
+        <Style x:Key="myGrid" TargetType="{x:Type DataGrid}" >
+            <Setter Property="Background" Value="FloralWhite" />
+            <Setter Property="AlternationCount" Value="2" />
+            <Setter Property="AlternatingRowBackground" Value="#cdcdb6" />
+            <Setter Property="RowBackground" Value="#F5F5DD"/>
+        </Style>
+
+        <!--button-->
+        <Style x:Key="myButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="BorderBrush" Value="#FF09097E" />
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="#FF09097E" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <!--textbox-->
+
+        <Style x:Key="myLable" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="Black" />
+
+        </Style>
+
+        <!--GroupBox-->
+        <Style x:Key="myGroupBox" TargetType="{x:Type GroupBox}">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Maroon" />
+
+
+        </Style>
+
+
+        <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            
+           
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="30"/>
+           
+            <Setter Property="FontSize" Value="14" />
+           
+            <Setter Property="FontWeight" Value="Bold" />
+
+
+            <Setter Property="Template" >
+                
+                <Setter.Value>
+                   
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        
+                        <Grid x:Name="grid">
+                           
+                            <Border x:Name="border" CornerRadius="8" BorderBrush="Black" BorderThickness="2">
+                                <Border.Background>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" 
+                                                        ScaleX="1.5" ScaleY="1.5"/>
+                                                <TranslateTransform X="0.02" Y="0.3"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Offset="1" Color="#00000000"/>
+                                        <GradientStop Offset="0.3" Color="#FFFFFFFF"/>
+                                    </RadialGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          TextElement.FontWeight="Bold" >
+                                </ContentPresenter>
+                            </Border>
+
+                        </Grid>
+                       
+                            <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#C46210" />
+
+                                <Setter Property="Foreground" Value="#C46210" />
+                                <Setter Property="Background" TargetName="border" Value="Black"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <!--<Setter Property="Background" TargetName="border" >
+                                    <Setter.Value>
+
+                                        <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                            <RadialGradientBrush.RelativeTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5"/>
+                                                    <TranslateTransform X="0.02" Y="0.3"/>
+                                                </TransformGroup>
+                                            </RadialGradientBrush.RelativeTransform>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                            <GradientStop Color="#FF303030" Offset="0.3"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>-->
+                                <Setter Property="Foreground" Value="White"/>
+
+                            </Trigger>
+                                
+                           
+
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+                      
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+           
+
+
+
+
+        </Style>
+
+        
+        
+
+        <Style x:Key="SmallBut" TargetType="{x:Type Button}">
+
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            
+
+
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+
+           
+
+
+            <Setter Property="Template" >
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="{x:Type Button}" >
+
+                        <Grid x:Name="grid">
+
+                            <Border x:Name="border" CornerRadius="8" BorderBrush="#C46210" BorderThickness="2" Background="Black">
+                               
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          TextElement.FontWeight="Bold" >
+                                </ContentPresenter>
+                            </Border>
+
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="black" />
+
+                                <Setter Property="Foreground" Value="#C46210" />
+                                <Setter Property="Background" TargetName="border" Value="#C46210"/>
+
+                            </Trigger>
+                           
+
+
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+
+
+
+
+        </Style>
+
+        <Style x:Key="OrangeBut" TargetType="{x:Type Button}">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="border" BorderThickness="2" Padding="4,2" BorderBrush="#F5F5DD" CornerRadius="8" >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Name="border" BorderThickness="2" Padding="4,2" BorderBrush="#C46210" CornerRadius="8" >
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Setter Property="Foreground" Value="#C46210" />
+                    
+
+
+                </Trigger>
+            </Style.Triggers>
+            
+        </Style>
+
+
+
+        <Style x:Key="BlackBut" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+
+
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="30"/>
+
+            <Setter Property="FontSize" Value="14" />
+
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#C46210" />
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="border" BorderThickness="2" Padding="4,2" BorderBrush="#C46210" CornerRadius="8" Background="Black">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                        </Border>
+                        
+                    </ControlTemplate>
+                  
+                </Setter.Value>
+              
+            </Setter>
+          
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Name="border" BorderThickness="2" Padding="4,2" BorderBrush="black" CornerRadius="8" >
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Setter Property="Foreground" Value="Black" />
+
+
+
+                </Trigger>
+            </Style.Triggers>
+
+           
+
+        </Style>
+
+
+        <Style x:Key="BlkOrngBut" TargetType="{x:Type Button}">
+
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+
+
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="30"/>
+
+            <Setter Property="FontSize" Value="14" />
+
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#C46210"/>
+
+            <Setter Property="Template" >
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="{x:Type Button}" >
+
+                        <Grid x:Name="grid">
+
+                            <Border x:Name="border" CornerRadius="8" BorderBrush="#C46210" BorderThickness="2" Background="Black" >
+                                
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          TextElement.FontWeight="Bold" >
+                                </ContentPresenter>
+                            </Border>
+
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="Black" />
+
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" TargetName="border" Value="#C46210"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <!--<Setter Property="Background" TargetName="border" >
+                                    <Setter.Value>
+
+                                        <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                            <RadialGradientBrush.RelativeTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5"/>
+                                                    <TranslateTransform X="0.02" Y="0.3"/>
+                                                </TransformGroup>
+                                            </RadialGradientBrush.RelativeTransform>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                            <GradientStop Color="#FF303030" Offset="0.3"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>-->
+                                <Setter Property="Foreground" Value="White"/>
+
+                            </Trigger>
+
+
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+
+
+
+
+        </Style>
+
     </Application.Resources>
 </Application>

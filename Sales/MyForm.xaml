@@ -1,0 +1,32 @@
+﻿<Window x:Class="Sales.MyForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sales"
+        mc:Ignorable="d"  AllowsTransparency="True" WindowStyle="None" Background="#F5F5DD"
+        Title="" Height="500" Width="720" BorderBrush="#0b353e" BorderThickness="3,0,3,3" WindowStartupLocation="CenterScreen"  FlowDirection="RightToLeft">
+    <StackPanel>
+        <Grid Height="30" MouseDown="Grid_MouseDown" Background="#0b353e">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="1*"/>
+
+
+            </Grid.ColumnDefinitions>
+            <Image Source="Images/Logo.png" Width="24" Grid.Column="0" MouseDown="Image_MouseDown_1">
+
+
+            </Image>
+
+            <TextBlock x:Name="txtTitel"  Text="عنوان الشاشة" Grid.Column="1" TextAlignment="Center"  Foreground="#C46210" HorizontalAlignment="Stretch" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Arial" FontSize="16"  />
+
+
+
+            <Image Source="Images/Delete.png" Width="24" Grid.Column="2"  Cursor="Hand" MouseDown="Image_MouseDown"></Image>
+        </Grid>
+
+    </StackPanel>
+   
+</Window>

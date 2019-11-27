@@ -24,5 +24,30 @@ namespace Sales
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rbDefineTemplet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rbAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            new frmUsers().ShowDialog();
+        }
+
+        private void rbDefineForms_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rbLogout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
