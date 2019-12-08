@@ -90,7 +90,7 @@
                    
                   
                     Click="btnUndo_Click"
-                    IsEnabled="False">
+                   >
               
             </Button>
             <Button x:Name="btnSave"

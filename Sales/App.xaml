@@ -186,7 +186,7 @@
 
                         <Grid x:Name="grid">
 
-                            <Border x:Name="border" CornerRadius="8" BorderBrush="#C46210" BorderThickness="2" Background="Black">
+                            <Border x:Name="border" CornerRadius="8" BorderBrush="Black" BorderThickness="2" Background="#d1ae90">
                                
                                 <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
