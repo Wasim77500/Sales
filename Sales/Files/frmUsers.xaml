@@ -40,6 +40,7 @@
                 <Image  Source="../Images/Search.png" Width="20"/>
             </Button>
             <TextBox x:Name="txtSwid" Width="0" />
+           
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0 0 0 5" >
@@ -85,6 +86,7 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5 1 0">
             <Button Name="btnUndo" 
+                    Margin="0 0 1 0"
                       Style="{StaticResource  BlkOrngBut}"  
                     Content="جديد"
                    
@@ -96,7 +98,7 @@
             <Button x:Name="btnSave"
                      Style="{StaticResource BlkOrngBut}" 
                     Content="حفظ"
-                    
+                    Margin="0 0 1 0"
                    
                     Click="btnSave_Click">
                
@@ -105,14 +107,14 @@
                     Style="{StaticResource BlkOrngBut}" 
                      Content="تعديل"
                IsEnabled="False"
-                   
+                   Margin="0 0 1 0"
                     Click="btnUpdate_Click">
                
             </Button>
             <Button Name="btnClose" 
                     Style="{StaticResource BlkOrngBut}" 
                       Content="خروج"
-                   
+                   Margin="0 0 1 0"
                     Click="btnClose_Click">
                
             </Button>
