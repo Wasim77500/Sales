@@ -1,0 +1,85 @@
+﻿<Window x:Class="Sales.frmViewEditTemplet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sales"
+        mc:Ignorable="d"  AllowsTransparency="True" WindowStyle="None" Background="#F5F5DD"
+        Title=""  Height="500" Width="420" 
+        BorderBrush="#0b353e" BorderThickness="3,0,3,3"
+        WindowStartupLocation="CenterScreen"
+        FlowDirection="RightToLeft"
+        Loaded="Window_Loaded"
+        >
+    <StackPanel>
+        <Grid Height="30" MouseDown="Grid_MouseDown" Background="#0b353e">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="1*"/>
+
+
+            </Grid.ColumnDefinitions>
+            <Image Source="../Images/Logo.png" Width="24" Grid.Column="0" MouseDown="Image_MouseDown_1">
+
+
+            </Image>
+
+            <TextBlock x:Name="txtTitel"  Text="عرض صلاحيات النماذج" Grid.Column="1" TextAlignment="Center"  Foreground="#C46210" HorizontalAlignment="Stretch" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Arial" FontSize="16"  />
+
+
+
+            <Image Source="../Images/Delete.png" Width="24" Grid.Column="2"  Cursor="Hand" MouseDown="Image_MouseDown"></Image>
+        </Grid>
+
+
+        <StackPanel Margin="0 5 0 0">
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 5" HorizontalAlignment="Center">
+                <TextBlock Margin="10 0 0 0"  Width="100" Text="اسم الشاشة"  Style="{StaticResource myLable}" />
+                <TextBox Name="txtFormName" Width="150" Height="24"  />
+
+                <TextBox Name="txtFormId" Width="0" Visibility="Hidden" />
+                <TextBox Name="txtFormEnName" Width="0" Visibility="Hidden" />
+                <TextBox Name="txtForm_type" Width="0" Visibility="Hidden" />
+            </StackPanel>
+
+
+            <DataGrid 
+                Style="{StaticResource myGrid}"
+                x:Name="dgvTempHeader"
+                ColumnHeaderStyle="{StaticResource HeaderStyle}" 
+                Height="177"
+                Margin="50,0,50,0"
+                 IsReadOnly="True"  
+                SelectionChanged="dgvTempHeader_SelectionChanged"
+                >
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="clmPkId" Header="الرقم" Binding="{Binding clmPkId}"   Width="0" MaxWidth="0"  />
+                    <DataGridTextColumn x:Name="clmFormArName" Header="اسم النموذج" Binding="{Binding clmFormArName}"  Width="*"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+            <DataGrid 
+                Style="{StaticResource myGrid}"
+                x:Name="dgvTempDetails"
+                ColumnHeaderStyle="{StaticResource HeaderStyle}" 
+                Height="254"
+                 IsReadOnly="True"  
+                SelectionChanged="dgvTempDetails_SelectionChanged"
+                >
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="clmPropName" Header="اسم الخاصية" Binding="{Binding clmPropName}"   Width="150"   />
+                    <DataGridTextColumn x:Name="clmPropValue" Header="القيمة" Binding="{Binding clmPropValue}"  Width="*"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+        </StackPanel>
+
+
+    </StackPanel>
+   
+</Window>

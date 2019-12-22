@@ -5,7 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sales"
         mc:Ignorable="d"  AllowsTransparency="True" WindowStyle="None" Background="#F5F5DD"
-        Title="" Height="405" Width="420" BorderBrush="#0b353e" BorderThickness="3,0,3,3" WindowStartupLocation="CenterScreen"  FlowDirection="RightToLeft">
+        Title="" Height="470" Width="420" 
+        BorderBrush="#0b353e" 
+        BorderThickness="3,0,3,3" 
+        WindowStartupLocation="CenterScreen"
+        FlowDirection="RightToLeft"
+        Loaded="Window_Loaded"
+        >
     <StackPanel>
         <Grid Height="30" MouseDown="Grid_MouseDown" Background="#0b353e">
             <Grid.ColumnDefinitions>
@@ -39,7 +45,7 @@
                     Click="btnFind_Click">
                 <Image  Source="../Images/Search.png" Width="20"/>
             </Button>
-            <TextBox x:Name="txtSwid" Width="0" />
+            <TextBox x:Name="txtPkid" Width="0" />
            
         </StackPanel>
 
@@ -63,6 +69,26 @@
                 <Image Source="../Images/Refresh.png" Width="20"/>
             </Button>
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 5"  >
+            <TextBlock Style="{StaticResource myLable}"
+                Margin="10 0 0 0" Width="100" 
+                       Text="الفرع"  
+                      
+                       />
+            <ComboBox Name="lstBranches" Width="200"/>
+            
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 5"  >
+            <TextBlock Style="{StaticResource myLable}"
+                Margin="10 0 0 0" Width="100" 
+                       Text="ملاحظات"  
+                      
+                       />
+            <TextBox Name="txtNote" Width="200"/>
+
+        </StackPanel>
+
+
 
 
 

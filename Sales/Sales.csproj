@@ -72,14 +72,71 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ConnectionToMySQL.cs" />
+    <Compile Include="Files\frmFindUser.xaml.cs">
+      <DependentUpon>frmFindUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Files\frmFreeList.xaml.cs">
+      <DependentUpon>frmFreeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Files\frmFindForms.xaml.cs">
+      <DependentUpon>frmFindForms.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Files\frmFormTemplet.xaml.cs">
+      <DependentUpon>frmFormTemplet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Files\frmlstEditor.xaml.cs">
+      <DependentUpon>frmlstEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Files\frmMultilstEditor.xaml.cs">
+      <DependentUpon>frmMultilstEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Files\frmTempletManagement.xaml.cs">
+      <DependentUpon>frmTempletManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Files\frmViewEditTemplet.xaml.cs">
+      <DependentUpon>frmViewEditTemplet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="glb_function.cs" />
     <Compile Include="frmMsg.xaml.cs">
       <DependentUpon>frmMsg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserTemplate.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
     <Page Include="Files\frmUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Files\frmFindUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Files\frmFreeList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Files\frmFindForms.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Files\frmFormTemplet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Files\frmlstEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Files\frmMultilstEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Files\frmTempletManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Files\frmViewEditTemplet.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -164,6 +221,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add_h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Open16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

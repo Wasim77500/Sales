@@ -204,7 +204,7 @@ namespace Sales
 
         private void rbAddUser_Click(object sender, RoutedEventArgs e)
         {
-            glb_function.MsgBox("تجربة رسالة التي تظهر للمستخدم");
+          
             new frmUsers().ShowDialog();
         }
 
@@ -216,6 +216,11 @@ namespace Sales
         private void rbLogout_Click(object sender, RoutedEventArgs e)
         {
             Window_Loaded(null, null);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

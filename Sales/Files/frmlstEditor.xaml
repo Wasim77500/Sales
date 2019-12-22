@@ -1,0 +1,32 @@
+﻿<Window x:Class="Sales.frmlstEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sales"
+        mc:Ignorable="d"  AllowsTransparency="True" WindowStyle="None" Background="#F5F5DD"
+        
+        BorderBrush="#0b353e" 
+        Height="100" Width="200"
+        BorderThickness="3,3,3,3" 
+        WindowStartupLocation="CenterScreen"  
+        FlowDirection="RightToLeft" 
+        Loaded="Window_Loaded"
+        >
+    <StackPanel>
+
+        <TextBlock Style="{StaticResource myLable}" 
+                   TextAlignment="Center" 
+                   Text="الرجاء اختيار القيمة"
+                   Margin="0 5 0 0"
+                   />
+        <ComboBox Name="lstEditor" Width="180" Margin="0 0 0 10"/>
+        <Button Name="btnOk" Style="{StaticResource BlkOrngBut}" 
+                Click="btnOk_Click">
+            موافق
+        </Button>
+
+
+    </StackPanel>
+   
+</Window>

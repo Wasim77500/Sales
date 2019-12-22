@@ -1,0 +1,202 @@
+﻿<Window x:Class="Sales.frmFormTemplet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sales"
+        mc:Ignorable="d"  AllowsTransparency="True" WindowStyle="None" Background="#F5F5DD"
+        Title="" Height="530" Width="610"
+        BorderBrush="#0b353e" BorderThickness="3,0,3,3"
+        WindowStartupLocation="CenterScreen"  
+        FlowDirection="RightToLeft"
+        Loaded="Window_Loaded"
+        >
+    <StackPanel>
+        <Grid Height="30" MouseDown="Grid_MouseDown" Background="#0b353e">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="1*"/>
+
+
+            </Grid.ColumnDefinitions>
+            <Image Source="../Images/Logo.png" Width="24" Grid.Column="0" MouseDown="Image_MouseDown_1">
+
+
+            </Image>
+
+            <TextBlock x:Name="txtTitel"  Text="تعريف النماذج" Grid.Column="1" TextAlignment="Center"  Foreground="#C46210" HorizontalAlignment="Stretch" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Arial" FontSize="16"  />
+
+
+
+            <Image Source="../Images/Delete.png" Width="24" Grid.Column="2"  Cursor="Hand" MouseDown="Image_MouseDown"></Image>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Margin="0 5 0 5" >
+            <TextBox x:Name="txtSwid" Width="0" />
+            <TextBlock Margin="10 0 0 0"  
+                       Text="اسم الشاشة(عربي)"  
+                       Style="{StaticResource myLable}" />
+            <TextBox Name="txtAR_NAME" Width="150" />
+            <TextBlock Margin="8 0 5 0"  
+                       Text="الشاشة في البرنامج" 
+                        Style="{StaticResource myLable}" 
+                       />
+            <TextBox Name="txtEN_NAME" Width="150" />
+            <Button Name="btnFindTemplet"
+                    Style="{StaticResource SmallBut}"
+                    Margin="5 0 0 0" 
+                    VerticalAlignment="Center" 
+                    Click="btnFindTemplet_Click">
+                <Image Source="../Images/Search.png" />
+            </Button>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 5 0 5" Height="34" >
+            <TextBlock Margin="10,4,50,0"  Text="نوع الشاشة" 
+                       Style="{StaticResource myLable}"
+                       />
+            <ComboBox Name="lstFormType" Width="150" Height="25"  >
+                <ComboBoxItem Content="ملف" Tag="File"/>
+                <ComboBoxItem Content="إدارة الأصول" Tag="Assets"/>
+                <ComboBoxItem Content="عمليات الأصول" Tag="Operations"/>
+                <ComboBoxItem Content="جرد الأصول" Tag="Inventory"/>
+                <ComboBoxItem Content="التقارير" Tag="Reports"/>
+            </ComboBox>
+            <CheckBox Name="ckbMULTI_FORM_FOR_USER"
+                      VerticalAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      Margin="10 0 0 0"  
+                      Content="يقبل اكثر من نموذج للمستخدم الواحد"  
+                      FontFamily="Arial" FontSize="20" Foreground="#C46210" >
+                <CheckBox.Resources>
+                    <Style TargetType="{x:Type Path}">
+                        <Setter Property="FlowDirection" Value="LeftToRight"/>
+                    </Style>
+                </CheckBox.Resources>
+            </CheckBox>
+        </StackPanel>
+
+
+
+        <GroupBox Margin="50,0,44,5" Header="اضافة خاصية" Style="{StaticResource myGroupBox}" Height="143">
+            <StackPanel >
+
+                <StackPanel Orientation="Horizontal" Margin="20 5 0 0">
+                    <TextBlock Width="110" FontWeight="Normal" Style="{StaticResource myLable}" Text="نوع الحقل"   Margin="0 0 5 0"/>
+                    <ComboBox Name="lstControlType" Width="174" Margin="0 0 5 0" SelectionChanged="lstControlType_SelectionChanged" >
+                        <ComboBoxItem>
+                            List
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            MultiChoices
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Free List
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Free MultiChoices
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Text
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Enability
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Visability
+                        </ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox Name="lstListType" Width="174" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20 5 0 0" >
+                    <TextBlock Width="110" FontWeight="Normal" Style="{StaticResource myLable}" Text="اسم الحقل(عربي)"  Margin="0 0 5 0"  />
+                    <TextBox Name="txtArName"  AcceptsReturn="True" Text=""  SpellCheck.IsEnabled="True" Width="173"   />
+                    <TextBox x:Name="txtFreeListId" Width="0" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20 5 0 0" >
+                    <TextBlock Width="110" FontWeight="Normal" Style="{StaticResource myLable}" Text="الاسم في الشاشة"  Margin="0 0 5 0"  />
+                    <TextBox Name="txtEnName"  AcceptsReturn="True" Text=""  SpellCheck.IsEnabled="True" Width="173"   />
+
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20 1 0 0" >
+                    <TextBlock Width="110" FontWeight="Normal" Style="{StaticResource myLable}" Text="ملاحظات"  Margin="0 0 5 0"  />
+                    <TextBox Name="txtPROPERITY_NOTE" TextWrapping="Wrap" AcceptsReturn="True" Text=""  SpellCheck.IsEnabled="True" Width="244" Height="26"  />
+                    <Button Name="btnAdd" 
+                            Style="{StaticResource SmallBut}" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center"
+                            Width="25"
+                            Margin="5 0 0 0" 
+                            Click="btnAdd_Click">
+                        
+                            <Image Source="../Images/Add_h.png" Width="15" />
+                           
+                    </Button>
+
+                </StackPanel>
+
+
+            </StackPanel>
+        </GroupBox>
+        <DataGrid Style="{StaticResource myGrid}" x:Name="dgvProperities" ColumnHeaderStyle="{StaticResource HeaderStyle}" IsReadOnly="True"   Height="220"    >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="clmSwid" Header="رقم التصنيف" Binding="{Binding clmSwid}" MaxWidth="0" Width="0" />
+
+
+
+                <DataGridTextColumn x:Name="clmFieldType" Header="نوع الحقل" Binding="{Binding clmFieldType}" Width="100" />
+                <DataGridTextColumn x:Name="clmFieldNameAr" Header="اسم الحقل" Binding="{Binding clmFieldNameAr}" Width="100" />
+                <DataGridTextColumn x:Name="clmFieldNameEn" Header="الاسم في الشاشة" Binding="{Binding clmFieldNameEn}" Width="110" />
+                <DataGridTextColumn x:Name="clmNote" Header="ملاحظات" Binding="{Binding clmNote}" Width="150" />
+                <DataGridTextColumn x:Name="clmListTypeId" Header="رقم نوع القائمة" Binding="{Binding clmListTypeId}" MaxWidth="0" Width="0" />
+                <DataGridTextColumn x:Name="clmListType" Header="نوع القائمة" Binding="{Binding clmListType}" Width="80" />
+                <DataGridTextColumn x:Name="clmFreeList" Header="اسم القائمة الحرة" Binding="{Binding clmFreeList}" MaxWidth="0" Width="0" />
+                <DataGridTemplateColumn Header="حذف" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button  Name="btnDeleteProprity" Style="{StaticResource myButton}" Width="52" Height="22" Click="btnDeleteProprity_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="../Images/Delete16.png" Width="15" Margin="0 0 5 0"/>
+                                    <TextBlock Text="حذف" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 1 0">
+
+            <Button Name="btnUndo" Style="{StaticResource BlkOrngBut}"  Click="btnUndo_Click"  >
+                جديد
+            </Button>
+            <Button x:Name="btnSave" 
+                    Style="{StaticResource BlkOrngBut}" 
+                    Click="btnSave_Click">
+                حفظ
+            </Button>
+            <Button Name="btnUpdate" 
+                    Style="{StaticResource  BlkOrngBut}"
+                    IsEnabled="False" 
+                    Click="btnUpdate_Click">
+                تعديل
+            </Button>
+            <Button Name="btnClose" 
+                    Style="{StaticResource BlkOrngBut}" 
+                    Click="btnClose_Click">
+                إغلاق
+            </Button>
+        </StackPanel>
+
+
+
+
+    </StackPanel>
+   
+</Window>
