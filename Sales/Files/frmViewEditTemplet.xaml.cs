@@ -43,7 +43,7 @@ namespace Sales
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtHeaderTemp = cnn.GetDataTable("select h.pkid,h.templet_name from templet_header h  " +
+            DataTable dtHeaderTemp = cnn.GetDataTable("select h.pkid,h.templet_name from Sales.templet_header h  " +
                     " where form_eng_name = '" + txtFormEnName.Text.Trim() + "' and form_type_en='" + txtForm_type.Text.Trim() + "'");
             clsTempHeader newRow;
             for (int i = 0; i < dtHeaderTemp.Rows.Count; i++)
@@ -94,7 +94,7 @@ namespace Sales
 
             dgvTempDetails.Items.Clear();
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtTempDetail = cnn.GetDataTable("select d.pkid, control_type, en_name, ar_name, control_value, real_value  from templet_details d " +
+            DataTable dtTempDetail = cnn.GetDataTable("select d.pkid, control_type, en_name, ar_name, control_value, real_value  from Sales.templet_details d " +
                            "  where d.header_id  = " + glb_function.GetCellValue(ref dgvTempHeader, clmPkId.DisplayIndex, iRow));
 
             clsTempDetails newRow;

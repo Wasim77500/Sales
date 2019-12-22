@@ -48,7 +48,7 @@ namespace Sales
             ConnectionToMySQL cnn = new ConnectionToMySQL();
 
 
-            DataTable dtLocationData = cnn.GetDataTable("select pkid,ar_name,en_name,multi_form_for_user,form_type_ar,form_type_En from forms_hd where ar_name like '%" +
+            DataTable dtLocationData = cnn.GetDataTable("select pkid,ar_name,en_name,multi_form_for_user,form_type_ar,form_type_En from sales.forms_hd where ar_name like '%" +
                                  txtFormArName.Text + "%'  ");
             clsHeaderData newRow;
             for (int i = 0; i < dtLocationData.Rows.Count; i++)
@@ -115,12 +115,12 @@ namespace Sales
 
 
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtTemplte = cnn.GetDataTable("select nvl(max(pkid),0)+1 from TEMPLET_HEADER");
+            DataTable dtTemplte = cnn.GetDataTable("select ifnull(max(b.pkid),0)+1 from sales.TEMPLET_HEADER b");
 
             txtPkId.Text = dtTemplte.Rows[0][0].ToString();
 
-            int icheck = cnn.TranDataToDB("insert into TEMPLET_HEADER values(" + txtPkId.Text + "," +
-                        glb_function.glb_strUserId + ",sysdate,'" + txtTempletName.Text + "','" +
+            int icheck = cnn.TranDataToDB("insert into sales.TEMPLET_HEADER values(" + txtPkId.Text + "," +
+                        glb_function.glb_strUserId + ",sysdate(),'" + txtTempletName.Text + "','" +
                         glb_function.GetCellValue(ref dgvForms, clmFormEnName.DisplayIndex, dgvForms.SelectedIndex) + "','" +
                         glb_function.GetCellValue(ref dgvForms, clmFormArName.DisplayIndex, dgvForms.SelectedIndex) + "','" +
                         glb_function.GetCellValue(ref dgvForms, clmMultiForm.DisplayIndex, dgvForms.SelectedIndex) + "','" +
@@ -133,7 +133,7 @@ namespace Sales
             }
             int iProSwid = 0;
             dtTemplte.Clear();
-            dtTemplte = cnn.GetDataTable("select nvl(max(pkid),0)+1 from TEMPLET_DETAILS");
+            dtTemplte = cnn.GetDataTable("select ifnull(max(b.pkid),0)+1 from sales.TEMPLET_DETAILS b");
             iProSwid = Convert.ToInt16(dtTemplte.Rows[0][0].ToString());
 
             for (int i = 0; i < dgProperities.Items.Count; i++)
@@ -141,14 +141,14 @@ namespace Sales
 
 
 
-                icheck = cnn.TranDataToDB("insert into TEMPLET_DETAILS values(" + iProSwid.ToString() +
+                icheck = cnn.TranDataToDB("insert into sales.TEMPLET_DETAILS values(" + iProSwid.ToString() +
                          "," + txtPkId.Text +
                          ",'" +
                         glb_function.GetCellValue(ref dgProperities, clmcontrol_type.DisplayIndex, i) + "','" +
                          glb_function.GetCellValue(ref dgProperities, clmen_name.DisplayIndex, i) + "','" +
                          glb_function.GetCellValue(ref dgProperities, clmPropertyName.DisplayIndex, i) + "','" +
                         glb_function.GetCellValueControl(ref dgProperities, "TextBox", clmPropertyValue.DisplayIndex, i) + "'," +
-                         glb_function.glb_strUserId + ",sysdate,'" +
+                         glb_function.glb_strUserId + ",sysdate(),'" +
                          (glb_function.GetCellValue(ref dgProperities, clmRealValue.DisplayIndex, i) == "" ? glb_function.GetCellValueControl(ref dgProperities, "TextBox", clmPropertyValue.DisplayIndex, i) : glb_function.GetCellValue(ref dgProperities, clmRealValue.DisplayIndex, i)) + "')");
                 iProSwid++;
 
@@ -201,7 +201,7 @@ namespace Sales
         {
             dgProperities.Items.Clear();
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtProp = cnn.GetDataTable("select pkid,control_type,en_name,ar_name,list_id,free_list_name from FORMs_de t " +
+            DataTable dtProp = cnn.GetDataTable("select pkid,control_type,en_name,ar_name,list_id,free_list_name from Sales.FORMs_de t " +
                       " where t.header_id = " + strHeaderPkid + " order by pkid");
             clsFormDetails newRow;
 
@@ -303,7 +303,7 @@ namespace Sales
                     {
                         frmlstEditor frm = new frmlstEditor();
                         ConnectionToMySQL cnn = new ConnectionToMySQL();
-                        DataTable dtFreeList = cnn.GetDataTable("select display_member,value_member from free_list " +
+                        DataTable dtFreeList = cnn.GetDataTable("select display_member,value_member from Sales.free_list " +
                         " where list_name = '" + glb_function.GetCellValue(ref dgProperities, clmFreeListName.DisplayIndex, dgProperities.SelectedIndex) + "'");
 
                         frm.lstEditor.ItemsSource = dtFreeList.DefaultView;
@@ -331,7 +331,7 @@ namespace Sales
                     {
                         frmlstEditor frm = new frmlstEditor();
                         ConnectionToMySQL cnn = new ConnectionToMySQL();
-                        DataTable dtListTable = cnn.GetDataTable("select  select_statement from LIST_TYPE t " +
+                        DataTable dtListTable = cnn.GetDataTable("select  select_statement from Sales.LIST_TYPE t " +
                              " where pkid =  '" + glb_function.GetCellValue(ref dgProperities, clmListId.DisplayIndex, dgProperities.SelectedIndex) + "'");
 
                         DataTable dtGetList = cnn.GetDataTable(dtListTable.Rows[0][0].ToString());
@@ -365,7 +365,7 @@ namespace Sales
                     {
                         frmMultilstEditor frm = new frmMultilstEditor();
                         ConnectionToMySQL cnn = new ConnectionToMySQL();
-                        DataTable dtListTable = cnn.GetDataTable("select  select_statement from LIST_TYPE t " +
+                        DataTable dtListTable = cnn.GetDataTable("select  select_statement from Sales.LIST_TYPE t " +
                              " where pkid =  '" + glb_function.GetCellValue(ref dgProperities, clmListId.DisplayIndex, dgProperities.SelectedIndex) + "'");
 
                         DataTable dtGetList = cnn.GetDataTable(dtListTable.Rows[0][0].ToString());
@@ -451,7 +451,7 @@ namespace Sales
                     {
                         frmMultilstEditor frm = new frmMultilstEditor();
                         ConnectionToMySQL cnn = new ConnectionToMySQL();
-                        DataTable dtFreeList = cnn.GetDataTable("select display_member,value_member from free_list " +
+                        DataTable dtFreeList = cnn.GetDataTable("select display_member,value_member from Sales.free_list " +
                         " where list_name = '" + glb_function.GetCellValue(ref dgProperities, clmFreeListName.DisplayIndex, dgProperities.SelectedIndex) + "'");
 
 

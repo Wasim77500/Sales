@@ -282,9 +282,9 @@ namespace Sales
             dgvProperities.Items.Clear();
             ConnectionToMySQL cnn = new ConnectionToMySQL();
             DataTable dtPorp = cnn.GetDataTable("select pkid, control_type, en_name, ar_name, " +
-                       "  list_id, (select l.list_name from list_type l where l.pkid = list_id) listtype, " +
+                       "  list_id, (select l.list_name from sales.list_type l where l.pkid = list_id) listtype, " +
                          " free_list_name, properity_note " +
-                         " Sales.from forms_de " +
+                         " from Sales.forms_de " +
                         "  where header_id = " + txtSwid.Text);
 
             clsGrid newRow;
