@@ -199,18 +199,18 @@ namespace Sales
         }
         private void rbDefineTemplet_Click(object sender, RoutedEventArgs e)
         {
-
+            new Files.frmFormTemplet().ShowDialog();
         }
 
         private void rbAddUser_Click(object sender, RoutedEventArgs e)
         {
           
-            new frmUsers().ShowDialog();
+            new Files.frmUsers().ShowDialog();
         }
 
         private void rbDefineForms_Click(object sender, RoutedEventArgs e)
         {
-
+            new Files.frmTempletManagement().ShowDialog();
         }
 
         private void rbLogout_Click(object sender, RoutedEventArgs e)
@@ -221,6 +221,11 @@ namespace Sales
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void rbChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            new Files.frmChangePassword().Show();
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Sales
+namespace Sales.Files
 {
     /// <summary>
     /// Interaction logic for frmLogin.xaml

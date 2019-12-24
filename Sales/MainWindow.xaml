@@ -95,7 +95,14 @@
                         </RibbonButton.BorderBrush>
                     </RibbonButton>
 
-                    <RibbonButton Name="rbChangePassword"  MinWidth="100"   Label="تغيير كلمة السر" LargeImageSource="Images/Password.png" Margin="5 0 0 0">
+                    <RibbonButton Name="rbChangePassword" 
+                                  MinWidth="100"  
+                                  Label="تغيير كلمة السر" 
+                                  LargeImageSource="Images/Password.png" 
+                                  Margin="5 0 0 0"
+                                  Click="rbChangePassword_Click"
+                                  
+                                  >
                         <RibbonButton.BorderBrush>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFC1ECF5" Offset="0"/>

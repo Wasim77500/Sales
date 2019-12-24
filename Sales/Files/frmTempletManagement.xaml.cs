@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Sales
+namespace Sales.Files
 {
     /// <summary>
     /// Interaction logic for frmLogin.xaml
@@ -558,6 +558,11 @@ namespace Sales
                 return false;
 
             return true;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            new UserTemplate().GetPrivForThisForm(this);
         }
     }
 }

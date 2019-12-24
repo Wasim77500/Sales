@@ -8,7 +8,7 @@ using System.Windows;
 
 class ConnectionToMySQL
 {
-        internal static string strDbCnnString = "server=localhost;port=3300;charset=utf8;database=Sales;userid=root;password=bigboss;SslMode=none";
+        internal static string strDbCnnString = "server=localhost;port=3300;charset=utf8;database=Sales;userid=root;password=bigboss;SslMode=none;AllowPublicKeyRetrieval=True";
         internal static MySqlConnection glb_cnn = new MySqlConnection(strDbCnnString);
         internal static MySqlCommand comm;
         internal static MySqlTransaction trns;
@@ -62,7 +62,7 @@ class ConnectionToMySQL
             {
             
                 MessageBox.Show(ErrGetData.Source + Convert.ToChar(13) + ErrGetData.Message, "Error",MessageBoxButton.OK,MessageBoxImage.Error);
-                glb_cnn.Close();
+               
                 return null;
 
             }
@@ -93,7 +93,7 @@ class ConnectionToMySQL
             {
 
             MessageBox.Show(ErrGetData.Source + Convert.ToChar(13) + ErrGetData.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            glb_cnn.Close();
+            
                 return -1;
             }
         }

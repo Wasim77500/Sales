@@ -12,7 +12,7 @@ namespace Sales
 {
     class UserTemplate
     {
-       static  DataTable  dtPri;
+        internal static  DataTable  dtPri;
 
         
         string strTempletId = "";
@@ -32,7 +32,7 @@ namespace Sales
             ConnectionToMySQL cnn = new ConnectionToMySQL();
             DataTable dtTemplete = cnn.GetDataTable("select u.templet_id,h.templet_name from  Sales.templet_header h,user_templet u " +
                         " where h.pkid = u.templet_id " +
-                        " and h.form_eng_name = '" + frm.Name + "' and u.user_id=" + glb_function.glb_strUserId);
+                        " and h.form_eng_name = '" + frm.Tag + "' and u.user_id=" + glb_function.glb_strUserId);
 
             if (dtTemplete == null || dtTemplete.Rows.Count <= 0)
             {
@@ -192,8 +192,9 @@ namespace Sales
 
             string str = dtPri.Rows.Count.ToString();
             string strss = dtPri.Rows[0]["en_name"].ToString();
-
+            
             DataRow[] childRows = dtPri.Select("[en_name]='" + strPriv + "'");
+            
             if (childRows[0]["control_type"].ToString() == "Enability")
             {
                 if (childRows[0]["real_value"].ToString() == "1")

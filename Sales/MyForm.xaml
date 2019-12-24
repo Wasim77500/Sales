@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sales"
-        mc:Ignorable="d"  AllowsTransparency="True" WindowStyle="None" Background="#F5F5DD"
-        Title="" Height="500" Width="720" BorderBrush="#0b353e" BorderThickness="3,0,3,3" WindowStartupLocation="CenterScreen"  FlowDirection="RightToLeft">
+        mc:Ignorable="d"  AllowsTransparency="True"
+        WindowStyle="None"
+        Background="#F5F5DD"
+        Title="" Height="500" Width="720" 
+        BorderBrush="#0b353e" 
+        BorderThickness="3,0,3,3" 
+        WindowStartupLocation="CenterScreen"  
+        FlowDirection="RightToLeft">
     <StackPanel>
         <Grid Height="30" MouseDown="Grid_MouseDown" Background="#0b353e">
             <Grid.ColumnDefinitions>

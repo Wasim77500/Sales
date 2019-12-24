@@ -19,7 +19,10 @@
                    />
             <TextBox Name="txtUsername"
                      Background="#545d6a" 
-                     Foreground="White" FontSize="18"
+                     Foreground="White"
+                    
+                     Height="28"
+                     VerticalContentAlignment="Center"
                      KeyDown="txtUsername_KeyDown"
                      />
             <Label Content="كلمة السر" Foreground="White" 
@@ -30,7 +33,8 @@
             <PasswordBox Name="txtPassword" 
                          Background="#545d6a"
                          Foreground="White"
-                         FontSize="18"
+                        
+                         Height="28"
                          KeyDown="txtPassword_KeyDown"
                          />
             <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">

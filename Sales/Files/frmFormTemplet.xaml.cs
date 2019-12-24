@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Sales
+namespace Sales.Files
 {
     /// <summary>
     /// Interaction logic for frmLogin.xaml
@@ -42,6 +42,7 @@ namespace Sales
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            new UserTemplate().GetPrivForThisForm(this);
             PrepareForm();
         }
         private void PrepareForm()
@@ -68,7 +69,7 @@ namespace Sales
 
             frm.ShowDialog();
 
-            if (frm.strPkid != "")
+            if (frm.strPkid.Trim() != "" && frm.strPkid != null)
             {
                 GetData(frm.strPkid);
             }

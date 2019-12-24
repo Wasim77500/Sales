@@ -96,6 +96,9 @@
     <Compile Include="Files\frmViewEditTemplet.xaml.cs">
       <DependentUpon>frmViewEditTemplet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Files\frmChangePassword.xaml.cs">
+      <DependentUpon>frmChangePassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="glb_function.cs" />
     <Compile Include="frmMsg.xaml.cs">
       <DependentUpon>frmMsg.xaml</DependentUpon>
@@ -137,6 +140,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Files\frmViewEditTemplet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Files\frmChangePassword.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -4,7 +4,27 @@
              xmlns:local="clr-namespace:Sales"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+
+
+        <Style x:Key="myForm" TargetType="{x:Type Window}">
+            <Setter Property="AllowsTransparency" Value="True"/>
+            <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="Background" Value="#F5F5DD"/>
+            <Setter Property="BorderBrush" Value="#0b353e"/>
+            <Setter Property="BorderThickness" Value="3,0,3,3"/>
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
+            <Setter Property="Title" Value=""/>
+      
+
+            <!--WindowStyle="None"
+        Background="#F5F5DD"
+        Title="" Height="500" Width="720" 
+        BorderBrush="#0b353e" 
+        BorderThickness="3,0,3,3" 
+        WindowStartupLocation="CenterScreen"  
+        FlowDirection="RightToLeft"-->
+        </Style>
+
         <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="Background"  Value="#1a2421"/>
             <Setter Property="Foreground" Value="#C46210" />
@@ -33,16 +53,18 @@
 
         <!--button-->
         <Style x:Key="myButton" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="AliceBlue"/>
-            <Setter Property="BorderBrush" Value="#FF09097E" />
+            <Setter Property="Background" Value="#d1ae90"/>
+            <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Width" Value="70"/>
             <Setter Property="Height" Value="32"/>
             <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="Foreground" Value="#FF09097E" />
+            <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
+
+        
 
         <!--textbox-->
 
