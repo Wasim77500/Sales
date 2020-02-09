@@ -30,7 +30,7 @@
             </Ribbon.ApplicationMenu>
 
 
-            <RibbonTab x:Name="tabFile" Header="مـلـف" FontWeight="Normal"   IsSelected="True" Background="AliceBlue" >
+            <RibbonTab x:Name="tabFile" Header="مـلـف" FontWeight="Normal"   IsSelected="True"  >
                 <RibbonGroup Header="إعدادات عامة" >
 
                     <RibbonGroup.GroupSizeDefinitions>
@@ -124,8 +124,37 @@
 
             </RibbonTab>
 
+            <RibbonTab x:Name="tabAccount" Header="الحسابات" FontWeight="Normal"   IsSelected="True"  >
+                <RibbonGroup Header="حسابات النظام" >
+
+                    <RibbonGroup.GroupSizeDefinitions>
+                        <RibbonGroupSizeDefinition>
+                        </RibbonGroupSizeDefinition>
+                    </RibbonGroup.GroupSizeDefinitions>
+
+                    <RibbonButton Name="rbAccountTree" 
+                                  MinWidth="100"  
+                                  Label="الدليل المحاسبي"
+                                  LargeImageSource="Images/AccTree.png"  
+                                   Tag="frmAccountTree"
+                                  Margin="0 0 0 0"
+                                  CommandParameter ="الدليل المحاسبي"
+                                  Content="Images/AccTree.png"  
+                                  Click="rbAccountTree_Click" Height="66"  
+                                  >
+
+                        <RibbonButton.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC1ECF5" Offset="0"/>
+                                <GradientStop Color="#FF1753D3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RibbonButton.BorderBrush>
+
+                    </RibbonButton>
 
 
+                </RibbonGroup>
+            </RibbonTab>
         </Ribbon>
 
     </Grid>

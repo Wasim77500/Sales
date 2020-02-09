@@ -225,7 +225,12 @@ namespace Sales
 
         private void rbChangePassword_Click(object sender, RoutedEventArgs e)
         {
-            new Files.frmChangePassword().Show();
+            new Files.frmChangePassword().ShowDialog();
+        }
+
+        private void rbAccountTree_Click(object sender, RoutedEventArgs e)
+        {
+            new Accounts.frmAccountTree().ShowDialog();
         }
     }
 }

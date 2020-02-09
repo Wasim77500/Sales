@@ -71,6 +71,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Accounts\frmAccountTree.xaml.cs">
+      <DependentUpon>frmAccountTree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\frmAccount.xaml.cs">
+      <DependentUpon>frmAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClearTreeSelection.cs" />
     <Compile Include="ConnectionToMySQL.cs" />
     <Compile Include="Files\frmFindUser.xaml.cs">
       <DependentUpon>frmFindUser.xaml</DependentUpon>
@@ -107,6 +114,14 @@
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Page Include="Accounts\frmAccountTree.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\frmAccount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Files\frmUsers.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -237,6 +252,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Open16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AccTree.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

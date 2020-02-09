@@ -239,6 +239,24 @@ namespace Sales
             return parentT ?? FindParent<T>(parent);
         }
 
+
+        public static bool UpdateHistory(string strTableName,string strColName,string strPkid,string strOldValue,string strNewValue,string strColArName)
+        {
+            ConnectionToMySQL cnn = new ConnectionToMySQL();
+            int icheck = 0;
+            // insert into sales.USER_TEMPLET values((select ifnull(max(b.pkid),0)+1 from sales.USER_TEMPLET b),
+            
+                icheck = cnn.TranDataToDB("insert into sales.updatehistory values((select ifnull(max(b.pk),0)+1 from sales.updatehistory b)," + glb_function.glb_strUserId + ",sysdate(),'"+strTableName+"','"+strColName+"'," + strPkid + ",'" + strOldValue + "','" + strNewValue + "','"+strColArName+"')");
+
+            if (icheck <= 0)
+                return false;
+
+
+            cnn.glb_commitTransaction();
+            return true;
+            
+        }
+
     }
 
 }

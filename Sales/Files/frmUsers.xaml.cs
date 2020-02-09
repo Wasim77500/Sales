@@ -24,7 +24,7 @@ namespace Sales.Files
         {
             InitializeComponent();
         }
-
+       
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
@@ -125,6 +125,9 @@ namespace Sales.Files
 
             cnnSave.glb_commitTransaction();
             glb_function.MsgBox("تمت العملية بنجاح");
+
+            UpdateHistory();
+
             GetData(txtPkid.Text);
         }
 
@@ -193,22 +196,29 @@ namespace Sales.Files
             glb_function.MsgBox("تمت العملية بنجاح");
             GetData(txtPkid.Text);
         }
+
+
+
+        System.Data.DataTable dtUserData;
         private void GetData(string strId)
         {
             new glb_function().clearItems(this);
             tvPrivsTree_Loaded(null, null);
             FillBranches();
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            System.Data.DataTable dtUserData = cnn.GetDataTable("SELECT pkid,userloginname,userLoginEncry,UserFullName,notes,branch_id  FROM sales.users" +
+             dtUserData = cnn.GetDataTable("SELECT pkid,userloginname,userLoginEncry,UserFullName,notes,branch_id  FROM sales.users" +
                                    " where pkid='" + strId + "'");
 
             if (dtUserData != null && dtUserData.Rows.Count > 0)
             {
                 txtPkid.Text = dtUserData.Rows[0]["pkid"].ToString();
+              
                 txtUserName.Text = dtUserData.Rows[0]["UserFullName"].ToString();
-
+                
                 txtUserLogin.Text = dtUserData.Rows[0]["userloginname"].ToString();
+
                 txtNote.Text = dtUserData.Rows[0]["notes"].ToString();
+
                 lstBranches.SelectedValue =Convert.ToInt32( dtUserData.Rows[0]["branch_id"].ToString());
 
                 DataTable dtTemplet = cnn.GetDataTable("select * from sales.USER_TEMPLET where user_id=" + txtPkid.Text);
@@ -449,6 +459,7 @@ namespace Sales.Files
 
             FillBranches();
         }
+
         private void FillBranches()
         {
             ConnectionToMySQL cnn = new ConnectionToMySQL();
@@ -487,6 +498,42 @@ namespace Sales.Files
                 }
 
             }
+        }
+
+        private void UpdateHistory()
+        {
+
+
+           if( txtPkid.Text != dtUserData.Rows[0]["pkid"].ToString())
+            {
+                glb_function.MsgBox("الرجاء التأكد من عملية التحديث");
+                return;
+            }
+            bool bCheckUpdateHistory = true;
+            // insert into sales.USER_TEMPLET values((select ifnull(max(b.pkid),0)+1 from sales.USER_TEMPLET b),
+            if (txtUserName.Text.Trim() != dtUserData.Rows[0]["UserFullName"].ToString().Trim())
+                if (!glb_function.UpdateHistory("users", "UserFullName", txtPkid.Text, dtUserData.Rows[0]["UserFullName"].ToString().Trim(), txtUserName.Text.Trim(), "اسم المستخدم"))
+                    bCheckUpdateHistory = false;
+
+
+
+            if (txtUserLogin.Text.Trim() != dtUserData.Rows[0]["userloginname"].ToString().Trim())
+                if (!glb_function.UpdateHistory("users", "userloginname", txtPkid.Text, dtUserData.Rows[0]["userloginname"].ToString().Trim(), txtUserLogin.Text.Trim(), "اسم الدخول"))
+                    bCheckUpdateHistory = false;
+
+           if(txtNote.Text.Trim() != dtUserData.Rows[0]["notes"].ToString())
+                if (!glb_function.UpdateHistory("users", "notes", txtPkid.Text, dtUserData.Rows[0]["notes"].ToString().Trim(), txtNote.Text.Trim(), "ملاحظات"))
+                    bCheckUpdateHistory = false;
+
+           if( lstBranches.SelectedValue.ToString() !=dtUserData.Rows[0]["branch_id"].ToString())
+                if (!glb_function.UpdateHistory("users", "branch_id", txtPkid.Text, dtUserData.Rows[0]["branch_id"].ToString().Trim(), lstBranches.SelectedValue.ToString().Trim(), "الفرع"))
+                    bCheckUpdateHistory = false;
+
+
+
+            if (bCheckUpdateHistory == false)
+                glb_function.MsgBox("حدث خطأ عند ادخال التعديل الى بيانات التتبع");
+
         }
     }
 }
