@@ -77,6 +77,9 @@
     <Compile Include="Accounts\frmAccount.xaml.cs">
       <DependentUpon>frmAccount.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\frmCurrency.xaml.cs">
+      <DependentUpon>frmCurrency.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ClearTreeSelection.cs" />
     <Compile Include="ConnectionToMySQL.cs" />
     <Compile Include="Files\frmFindUser.xaml.cs">
@@ -119,6 +122,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Accounts\frmAccount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\frmCurrency.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -255,6 +262,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\AccTree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Currency.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

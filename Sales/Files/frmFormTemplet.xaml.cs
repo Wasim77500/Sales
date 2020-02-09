@@ -56,7 +56,7 @@ namespace Sales.Files
         private void FillListType()
         {
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtFill = cnn.GetDataTable("select pkid, list_name from Sales.LIST_TYPE");
+            DataTable dtFill = cnn.GetDataTable("select pkid, list_name from LIST_TYPE");
             lstListType.ItemsSource = dtFill.DefaultView;
             lstListType.SelectedValuePath = "pkid".ToUpper();
             lstListType.DisplayMemberPath = "list_name".ToUpper();
@@ -158,7 +158,7 @@ namespace Sales.Files
             else
             {
                 ConnectionToMySQL cnn = new ConnectionToMySQL();
-                int icheck = cnn.TranDataToDB("delete from Sales.FORMs_de where pkid=" + glb_function.GetCellValue(ref dgvProperities, clmSwid.DisplayIndex, dgvProperities.SelectedIndex));
+                int icheck = cnn.TranDataToDB("delete from FORMs_de where pkid=" + glb_function.GetCellValue(ref dgvProperities, clmSwid.DisplayIndex, dgvProperities.SelectedIndex));
                 if (icheck <= 0)
                 {
                     glb_function.MsgBox("حدثت مشكلة اثناء الحذف");
@@ -212,7 +212,7 @@ namespace Sales.Files
                 return;
 
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtTemplte = cnn.GetDataTable("select ifnull(max(b.pkid),0)+1 from Sales.FORMS_hd b");
+            DataTable dtTemplte = cnn.GetDataTable("select ifnull(max(b.pkid),0)+1 from FORMS_hd b");
 
             txtSwid.Text = dtTemplte.Rows[0][0].ToString();
 
@@ -221,7 +221,7 @@ namespace Sales.Files
 
 
 
-            int icheck = cnn.TranDataToDB("insert into Sales.FORMS_hd values(" + txtSwid.Text + ",'" + txtAR_NAME.Text + "','" + txtEN_NAME.Text + "','" + (ckbMULTI_FORM_FOR_USER.IsChecked == true ? "1" : "0") + "','" + ((ListBoxItem)lstFormType.Items[lstFormType.Items.IndexOf(lstFormType.SelectedItem)]).Tag.ToString() + "','" + lstFormType.Text.Trim() + "')");
+            int icheck = cnn.TranDataToDB("insert into FORMS_hd values(" + txtSwid.Text + ",'" + txtAR_NAME.Text + "','" + txtEN_NAME.Text + "','" + (ckbMULTI_FORM_FOR_USER.IsChecked == true ? "1" : "0") + "','" + ((ListBoxItem)lstFormType.Items[lstFormType.Items.IndexOf(lstFormType.SelectedItem)]).Tag.ToString() + "','" + lstFormType.Text.Trim() + "')");
             if (icheck <= 0)
             {
                 glb_function.MsgBox("حدث خطأ اثناء العملية");
@@ -237,7 +237,7 @@ namespace Sales.Files
                 {
 
 
-                    icheck = cnn.TranDataToDB("insert into Sales.FORMs_de values((select ifnull(max(b.pkid),0)+1 from Sales.FORMs_de b)," + txtSwid.Text + ",'" + glb_function.GetCellValue(ref dgvProperities, clmFieldType.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmFieldNameEn.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmFieldNameAr.DisplayIndex, i) + "'," + glb_function.GetCellValue(ref dgvProperities, clmListTypeId.DisplayIndex, i) + ",'" + glb_function.GetCellValue(ref dgvProperities, clmFreeList.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmNote.DisplayIndex, i) + "')");
+                    icheck = cnn.TranDataToDB("insert into FORMs_de values((select ifnull(max(b.pkid),0)+1 from FORMs_de b)," + txtSwid.Text + ",'" + glb_function.GetCellValue(ref dgvProperities, clmFieldType.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmFieldNameEn.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmFieldNameAr.DisplayIndex, i) + "'," + glb_function.GetCellValue(ref dgvProperities, clmListTypeId.DisplayIndex, i) + ",'" + glb_function.GetCellValue(ref dgvProperities, clmFreeList.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmNote.DisplayIndex, i) + "')");
 
                     if (icheck <= 0)
                     {
@@ -260,7 +260,7 @@ namespace Sales.Files
             new glb_function().clearItems(this);
             PrepareForm();
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtLocation = cnn.GetDataTable("select * from Sales.forms_hd where pkid=" + strPkid);
+            DataTable dtLocation = cnn.GetDataTable("select * from forms_hd where pkid=" + strPkid);
 
             txtSwid.Text = strPkid;
             txtAR_NAME.Text = dtLocation.Rows[0]["AR_NAME"].ToString();
@@ -283,9 +283,9 @@ namespace Sales.Files
             dgvProperities.Items.Clear();
             ConnectionToMySQL cnn = new ConnectionToMySQL();
             DataTable dtPorp = cnn.GetDataTable("select pkid, control_type, en_name, ar_name, " +
-                       "  list_id, (select l.list_name from sales.list_type l where l.pkid = list_id) listtype, " +
+                       "  list_id, (select l.list_name from list_type l where l.pkid = list_id) listtype, " +
                          " free_list_name, properity_note " +
-                         " from Sales.forms_de " +
+                         " from forms_de " +
                         "  where header_id = " + txtSwid.Text);
 
             clsGrid newRow;
@@ -319,7 +319,7 @@ namespace Sales.Files
 
 
 
-            int icheck = cnn.TranDataToDB("update Sales.FORMS_hd set AR_NAME='" + txtAR_NAME.Text + "',EN_NAME='" + txtEN_NAME.Text + "',MULTI_FORM_FOR_USER='" + (ckbMULTI_FORM_FOR_USER.IsChecked == true ? "1" : "0") + "',form_type_en='" + ((ListBoxItem)lstFormType.Items[lstFormType.Items.IndexOf(lstFormType.SelectedItem)]).Tag.ToString() + "',form_type_ar='" + lstFormType.Text.Trim() + "' where pkid=" + txtSwid.Text);
+            int icheck = cnn.TranDataToDB("update FORMS_hd set AR_NAME='" + txtAR_NAME.Text + "',EN_NAME='" + txtEN_NAME.Text + "',MULTI_FORM_FOR_USER='" + (ckbMULTI_FORM_FOR_USER.IsChecked == true ? "1" : "0") + "',form_type_en='" + ((ListBoxItem)lstFormType.Items[lstFormType.Items.IndexOf(lstFormType.SelectedItem)]).Tag.ToString() + "',form_type_ar='" + lstFormType.Text.Trim() + "' where pkid=" + txtSwid.Text);
             if (icheck <= 0)
             {
                 glb_function.MsgBox("حدث خطأ اثناء العملية");
@@ -331,7 +331,7 @@ namespace Sales.Files
                 {
 
 
-                    icheck = cnn.TranDataToDB("insert into Sales.FORMs_de values((select ifnull(max(b.pkid),0)+1 from Sales.FORMs_de b)," + txtSwid.Text + ",'" + glb_function.GetCellValue(ref dgvProperities, clmFieldType.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmFieldNameEn.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmFieldNameAr.DisplayIndex, i) + "'," + glb_function.GetCellValue(ref dgvProperities, clmListTypeId.DisplayIndex, i) + ",'" + glb_function.GetCellValue(ref dgvProperities, clmFreeList.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmNote.DisplayIndex, i) + "')");
+                    icheck = cnn.TranDataToDB("insert into FORMs_de values((select ifnull(max(b.pkid),0)+1 from FORMs_de b)," + txtSwid.Text + ",'" + glb_function.GetCellValue(ref dgvProperities, clmFieldType.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmFieldNameEn.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmFieldNameAr.DisplayIndex, i) + "'," + glb_function.GetCellValue(ref dgvProperities, clmListTypeId.DisplayIndex, i) + ",'" + glb_function.GetCellValue(ref dgvProperities, clmFreeList.DisplayIndex, i) + "','" + glb_function.GetCellValue(ref dgvProperities, clmNote.DisplayIndex, i) + "')");
 
                     if (icheck <= 0)
                     {

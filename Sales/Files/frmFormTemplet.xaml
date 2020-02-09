@@ -151,14 +151,14 @@
                 <DataGridTextColumn x:Name="clmFieldType" Header="نوع الحقل" Binding="{Binding clmFieldType}" Width="100" />
                 <DataGridTextColumn x:Name="clmFieldNameAr" Header="اسم الحقل" Binding="{Binding clmFieldNameAr}" Width="100" />
                 <DataGridTextColumn x:Name="clmFieldNameEn" Header="الاسم في الشاشة" Binding="{Binding clmFieldNameEn}" Width="110" />
-                <DataGridTextColumn x:Name="clmNote" Header="ملاحظات" Binding="{Binding clmNote}" Width="150" />
+                <DataGridTextColumn x:Name="clmNote" Header="ملاحظات" Binding="{Binding clmNote}" Width="140" />
                 <DataGridTextColumn x:Name="clmListTypeId" Header="رقم نوع القائمة" Binding="{Binding clmListTypeId}" MaxWidth="0" Width="0" />
                 <DataGridTextColumn x:Name="clmListType" Header="نوع القائمة" Binding="{Binding clmListType}" Width="80" />
                 <DataGridTextColumn x:Name="clmFreeList" Header="اسم القائمة الحرة" Binding="{Binding clmFreeList}" MaxWidth="0" Width="0" />
                 <DataGridTemplateColumn Header="حذف" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button  Name="btnDeleteProprity" Style="{StaticResource myButton}" Width="52" Height="22" Click="btnDeleteProprity_Click">
+                            <Button  Name="btnDeleteProprity" Style="{StaticResource BlackBut}" Width="60" Height="22" Click="btnDeleteProprity_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="../Images/Delete16.png" Width="15" Margin="0 0 5 0"/>
                                     <TextBlock Text="حذف" VerticalAlignment="Center"/>

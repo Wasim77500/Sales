@@ -87,7 +87,7 @@ namespace Sales.Files
 
             ConnectionToMySQL cnnSave = new ConnectionToMySQL();
           
-            int icheck = cnnSave.TranDataToDB("update sales.users " +
+            int icheck = cnnSave.TranDataToDB("update users " +
                           " set UserLoginName='" + txtUserLogin.Text.Trim() + "',userLoginEncry='" + new glb_function().Encrypt(txtUserLogin.Text.Trim(), true) + "',UserFullName='" + txtUserName.Text.Trim() +
                           "',Notes='" + txtNote.Text.Trim() + "',branch_id=" + lstBranches.SelectedValue.ToString() + " where pkid="+txtPkid.Text );
 
@@ -99,7 +99,7 @@ namespace Sales.Files
             }
 
 
-            icheck = cnnSave.TranDataToDB("delete from sales.USER_TEMPLET where user_id=" + txtPkid.Text);
+            icheck = cnnSave.TranDataToDB("delete from USER_TEMPLET where user_id=" + txtPkid.Text);
             if (icheck < 0)
             {
                 cnnSave.glb_RollbackTransaction();
@@ -111,7 +111,7 @@ namespace Sales.Files
             while (strSelectedTemp != "")
             {
                 string strTemp = strSelectedTemp.Substring(0, strSelectedTemp.IndexOf(';'));
-                icheck = cnnSave.TranDataToDB("insert into sales.USER_TEMPLET values ((select ifnull(max(b.pkid),0)+1 from sales.USER_TEMPLET b), " + txtPkid.Text + "," + strTemp + ")");
+                icheck = cnnSave.TranDataToDB("insert into USER_TEMPLET values ((select ifnull(max(b.pkid),0)+1 from USER_TEMPLET b), " + txtPkid.Text + "," + strTemp + ")");
 
                 if (icheck <= 0)
                 {
@@ -153,9 +153,9 @@ namespace Sales.Files
             }
 
             ConnectionToMySQL cnnSave = new ConnectionToMySQL();
-            DataTable dt = cnnSave.GetDataTable("(select ifnull(max(b.pkid),0)+1 from sales.users b)");
+            DataTable dt = cnnSave.GetDataTable("(select ifnull(max(b.pkid),0)+1 from users b)");
             txtPkid.Text = dt.Rows[0][0].ToString();
-            int icheck = cnnSave.TranDataToDB("insert into sales.users " +
+            int icheck = cnnSave.TranDataToDB("insert into users " +
                           " values(" + txtPkid.Text + ",'فعال',SYSDATE() ," +glb_function.glb_strUserId+
                           ",'"+txtUserLogin.Text.Trim()+ "','" + new glb_function().Encrypt(txtUserLogin.Text.Trim(), true) + "','" + txtUserName.Text.Trim() +
                           "','" + new glb_function().Encrypt(txtPassword.Password.Trim(), true) + "','"+txtNote.Text .Trim()+"'," + lstBranches.SelectedValue.ToString()+ ")");
@@ -168,7 +168,7 @@ namespace Sales.Files
             }
 
 
-            icheck = cnnSave.TranDataToDB("delete from sales.USER_TEMPLET where user_id=" + txtPkid.Text);
+            icheck = cnnSave.TranDataToDB("delete from USER_TEMPLET where user_id=" + txtPkid.Text);
             if (icheck < 0)
             {
                 cnnSave.glb_RollbackTransaction();
@@ -180,7 +180,7 @@ namespace Sales.Files
             while (strSelectedTemp != "")
             {
                 string strTemp = strSelectedTemp.Substring(0, strSelectedTemp.IndexOf(';'));
-                icheck = cnnSave.TranDataToDB("insert into sales.USER_TEMPLET values ((select ifnull(max(b.pkid),0)+1 from sales.USER_TEMPLET b), " + txtPkid.Text + "," + strTemp + ")");
+                icheck = cnnSave.TranDataToDB("insert into USER_TEMPLET values ((select ifnull(max(b.pkid),0)+1 from USER_TEMPLET b), " + txtPkid.Text + "," + strTemp + ")");
 
                 if (icheck <= 0)
                 {
@@ -206,7 +206,7 @@ namespace Sales.Files
             tvPrivsTree_Loaded(null, null);
             FillBranches();
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-             dtUserData = cnn.GetDataTable("SELECT pkid,userloginname,userLoginEncry,UserFullName,notes,branch_id  FROM sales.users" +
+             dtUserData = cnn.GetDataTable("SELECT pkid,userloginname,userLoginEncry,UserFullName,notes,branch_id  FROM users" +
                                    " where pkid='" + strId + "'");
 
             if (dtUserData != null && dtUserData.Rows.Count > 0)
@@ -221,7 +221,7 @@ namespace Sales.Files
 
                 lstBranches.SelectedValue =Convert.ToInt32( dtUserData.Rows[0]["branch_id"].ToString());
 
-                DataTable dtTemplet = cnn.GetDataTable("select * from sales.USER_TEMPLET where user_id=" + txtPkid.Text);
+                DataTable dtTemplet = cnn.GetDataTable("select * from USER_TEMPLET where user_id=" + txtPkid.Text);
 
                 for (int i = 0; i < dtTemplet.Rows.Count; i++)
                 {
@@ -274,7 +274,7 @@ namespace Sales.Files
 
             glb_function.MsgBox("سيتم مسح عمل اعادة تعيين لكلمة السر" + "\n" + "كلمة السر الجديدة :" + "123");
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            int icheck = cnn.TranDataToDB("update sales.users set PASSWORD='" + new glb_function().Encrypt("123", true) + "'" +
+            int icheck = cnn.TranDataToDB("update users set PASSWORD='" + new glb_function().Encrypt("123", true) + "'" +
                                             " where pkid=" + txtPkid.Text.Trim() + "");
 
             if (icheck >= 0)
@@ -307,7 +307,7 @@ namespace Sales.Files
 
             ConnectionToMySQL cnn = new ConnectionToMySQL();
             DataTable dtTemplet = cnn.GetDataTable("select distinct t.form_type_ar,t.form_type_en " +
-                           " from sales.TEMPLET_HEADER t " +
+                           " from TEMPLET_HEADER t " +
                            " ");
 
             foreach (DataRow row in dtTemplet.Rows)
@@ -330,7 +330,7 @@ namespace Sales.Files
             node.IsExpanded = true;
             ConnectionToMySQL cnn = new ConnectionToMySQL();
             DataTable dtTemplet = cnn.GetDataTable("select distinct t.form_arabic_name,t.form_eng_name " +
-                           " from sales.TEMPLET_HEADER t " +
+                           " from TEMPLET_HEADER t " +
                            " where form_type_en = '" + strform_type + "'");
 
             foreach (DataRow row in dtTemplet.Rows)
@@ -353,7 +353,7 @@ namespace Sales.Files
             node.IsExpanded = true;
             ConnectionToMySQL cnn = new ConnectionToMySQL();
             DataTable dtTemplet = cnn.GetDataTable("select pkid, templet_name,multi_form_for_user  " +
-                       " from sales.TEMPLET_HEADER t " +
+                       " from TEMPLET_HEADER t " +
                        " where form_eng_name = '" + strFormName + "' ");
 
             foreach (DataRow row in dtTemplet.Rows)
@@ -463,7 +463,7 @@ namespace Sales.Files
         private void FillBranches()
         {
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtBrnch = cnn.GetDataTable("SELECT pkid,Branch_name FROM sales.branches ");
+            DataTable dtBrnch = cnn.GetDataTable("SELECT pkid,Branch_name FROM branches ");
             lstBranches.ItemsSource = dtBrnch.DefaultView;
             lstBranches.SelectedValuePath = "pkid";
             lstBranches.DisplayMemberPath = "Branch_name";

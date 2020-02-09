@@ -56,7 +56,7 @@ namespace Sales.Files
         {
             dgvUser.Items.Clear();
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            System.Data.DataTable dtUsers = cnn.GetDataTable("select pkid,UserFullName,UserLoginName from sales.users " +
+            System.Data.DataTable dtUsers = cnn.GetDataTable("select pkid,UserFullName,UserLoginName from users " +
                                 " where UserLoginName like '%" + txtUserLogin.Text + "%' and UserFullName like '%" + txtUserName.Text + "%' order  by UserFullName");
 
             List<User> lst = new List<User>();

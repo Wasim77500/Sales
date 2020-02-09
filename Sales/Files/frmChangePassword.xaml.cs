@@ -47,7 +47,7 @@ namespace Sales.Files
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             ConnectionToMySQL conn = new ConnectionToMySQL();
-            System.Data.DataTable dtLogin = conn.GetDataTable("select pkid from sales.users " +
+            System.Data.DataTable dtLogin = conn.GetDataTable("select pkid from users " +
                 " where UserFullName='" + glb_function.glb_strUserName.Trim() + "' and PASSWORD='" + new glb_function().Encrypt(txtOldPassword.Password.Trim(), true) + "'");
 
             if (dtLogin != null && dtLogin.Rows.Count != 0)
@@ -59,7 +59,7 @@ namespace Sales.Files
                     return;
                 }
 
-                int icheck = conn.TranDataToDB("update  sales.users set PASSWORD='" + new glb_function().Encrypt(txtPassword.Password.Trim(), true) + "' where pkid=" + glb_function.glb_strUserId);
+                int icheck = conn.TranDataToDB("update  users set PASSWORD='" + new glb_function().Encrypt(txtPassword.Password.Trim(), true) + "' where pkid=" + glb_function.glb_strUserId);
                 if (icheck <= 0)
                 {
 

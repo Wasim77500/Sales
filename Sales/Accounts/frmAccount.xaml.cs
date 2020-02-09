@@ -71,8 +71,8 @@ namespace Sales.Accounts
         private void  AddAccount()
         {
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            int icheck = cnn.TranDataToDB("insert into sales.accounts values(" +
-                "(SELECT ifnull(max(b.pkid),0)+1 FROM sales.accounts b)" +
+            int icheck = cnn.TranDataToDB("insert into accounts values(" +
+                "(SELECT ifnull(max(b.pkid),0)+1 FROM accounts b)" +
                 ",'فعال'" +
                 ",sysdate()" +
                 "," + glb_function.glb_strUserId+
@@ -101,7 +101,7 @@ namespace Sales.Accounts
         private void UpdateAccount()
         {
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            int icheck = cnn.TranDataToDB("update sales.accounts set " +
+            int icheck = cnn.TranDataToDB("update accounts set " +
                   " Acc_Name='" + txtAccName.Text.Trim() + "'" +
                   ",notes='" + txtAccNote.Text.Trim() + "'" +
                   " where pkid="+txtPkid.Text );
@@ -139,7 +139,7 @@ namespace Sales.Accounts
         private void GetAccNo()
         {
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtAcc = cnn.GetDataTable("SELECT ifnull(max(a.acc_short_no),0)+1 FROM sales.accounts a where parent_id=" + txtParentId.Text);
+            DataTable dtAcc = cnn.GetDataTable("SELECT ifnull(max(a.acc_short_no),0)+1 FROM accounts a where parent_id=" + txtParentId.Text);
             strAccShortNo = dtAcc.Rows[0][0].ToString();
             txtAccNo.Text = "";
             if (txtLevel.Text == "1")

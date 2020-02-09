@@ -48,7 +48,7 @@ namespace Sales.Files
         {
             dgvForms.Items.Clear();
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            System.Data.DataTable dtUsers = cnn.GetDataTable("select pkid,ar_name,en_name from Sales.forms_hd  " +
+            System.Data.DataTable dtUsers = cnn.GetDataTable("select pkid,ar_name,en_name from forms_hd  " +
                                 " where ar_name like '%" + txtFormAr.Text + "%' and en_name like '%" + txtFormEn.Text + "%' ");
 
             clsGrid newRow;

@@ -30,7 +30,7 @@ namespace Sales
 
 
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtTemplete = cnn.GetDataTable("select u.templet_id,h.templet_name from  Sales.templet_header h,user_templet u " +
+            DataTable dtTemplete = cnn.GetDataTable("select u.templet_id,h.templet_name from  templet_header h,user_templet u " +
                         " where h.pkid = u.templet_id " +
                         " and h.form_eng_name = '" + frm.Tag + "' and u.user_id=" + glb_function.glb_strUserId);
 
@@ -57,7 +57,7 @@ namespace Sales
                 
 
                 string strStat = "select h.pkid,h.form_eng_name,h.form_type_en ,d.control_type,d.en_name,d.real_value,d.ar_name,multi_form_for_user " +
-                      " from Sales.templet_header h,Sales.templet_details d" +
+                      " from templet_header h,templet_details d" +
                      "  where h.pkid = d.header_id " +
                     "  and h.pkid = " + strTempletId;
 

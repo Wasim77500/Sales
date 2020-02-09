@@ -100,9 +100,9 @@ namespace Sales.Files
 
             dgvFreeList.Items.Clear();
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtGetid = cnn.GetDataTable("select ifnull(max(b.pkid),0)+1 from sales.FREE_LIST b");
+            DataTable dtGetid = cnn.GetDataTable("select ifnull(max(b.pkid),0)+1 from FREE_LIST b");
             txtSwid.Text = dtGetid.Rows[0][0].ToString();
-            int icheck = cnn.TranDataToDB("insert into sales.FREE_LIST values(" + txtSwid.Text + ",'" + lstLIST_NAME.Text + "','" + txtDISPLAY_MEMBER.Text + "','" + txtVALUE_MEMBER.Text + "')");
+            int icheck = cnn.TranDataToDB("insert into FREE_LIST values(" + txtSwid.Text + ",'" + lstLIST_NAME.Text + "','" + txtDISPLAY_MEMBER.Text + "','" + txtVALUE_MEMBER.Text + "')");
 
             if (icheck <= 0)
             {
@@ -125,7 +125,7 @@ namespace Sales.Files
         {
 
             ConnectionToMySQL cnn = new ConnectionToMySQL();
-            DataTable dtGetFreeListData = cnn.GetDataTable("select pkid,list_name,display_member,value_member from sales.FREE_LIST t" +
+            DataTable dtGetFreeListData = cnn.GetDataTable("select pkid,list_name,display_member,value_member from FREE_LIST t" +
                             " where list_name = '" + strListName + "'");
             dgvFreeList.Items.Clear();
             lstLIST_NAME.Text = strListName;
@@ -156,7 +156,7 @@ namespace Sales.Files
         {
             ConnectionToMySQL myconn = new ConnectionToMySQL();
             DataTable MyDataTable;
-            MyDataTable = myconn.GetDataTable("Select distinct list_name From  sales.free_list ");
+            MyDataTable = myconn.GetDataTable("Select distinct list_name From  free_list ");
             if (MyDataTable != null)
             {
 

@@ -91,7 +91,7 @@ namespace Sales
             }
 
 
-            dtUserForm = myconn.GetDataTable("select u.pkid,m.form_arabic_name,m.form_eng_name,m.form_type_en from Sales.templet_header m,Sales.user_templet u " +
+            dtUserForm = myconn.GetDataTable("select u.pkid,m.form_arabic_name,m.form_eng_name,m.form_type_en from templet_header m,user_templet u " +
                                           "  where m.pkid = u.templet_id and u.user_id= " + glb_function.glb_strUserId);
             CreateToolIcons(this);
 
@@ -231,6 +231,11 @@ namespace Sales
         private void rbAccountTree_Click(object sender, RoutedEventArgs e)
         {
             new Accounts.frmAccountTree().ShowDialog();
+        }
+
+        private void rbCurrency_Click(object sender, RoutedEventArgs e)
+        {
+            new Accounts.frmCurrency().ShowDialog();
         }
     }
 }

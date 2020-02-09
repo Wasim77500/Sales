@@ -36,7 +36,7 @@ namespace Sales
 
             ConnectionToMySQL cnn = new ConnectionToMySQL();
             System.Data.DataTable MyDataTable;
-            MyDataTable = cnn.GetDataTable("SELECT pkid,UserLoginName,UserFullName,password,notes,branch_id FROM sales.users Where userLoginEncry = '" + new glb_function().Encrypt(txtUsername.Text, true) + "' And Password = '" + new glb_function().Encrypt(txtPassword.Password, true) + "'");
+            MyDataTable = cnn.GetDataTable("SELECT pkid,UserLoginName,UserFullName,password,notes,branch_id FROM users Where userLoginEncry = '" + new glb_function().Encrypt(txtUsername.Text, true) + "' And Password = '" + new glb_function().Encrypt(txtPassword.Password, true) + "'");
 
 
             if (MyDataTable != null && MyDataTable.Rows.Count != 0)

@@ -246,7 +246,7 @@ namespace Sales
             int icheck = 0;
             // insert into sales.USER_TEMPLET values((select ifnull(max(b.pkid),0)+1 from sales.USER_TEMPLET b),
             
-                icheck = cnn.TranDataToDB("insert into sales.updatehistory values((select ifnull(max(b.pk),0)+1 from sales.updatehistory b)," + glb_function.glb_strUserId + ",sysdate(),'"+strTableName+"','"+strColName+"'," + strPkid + ",'" + strOldValue + "','" + strNewValue + "','"+strColArName+"')");
+                icheck = cnn.TranDataToDB("insert into updatehistory values((select ifnull(max(b.pk),0)+1 from updatehistory b)," + glb_function.glb_strUserId + ",sysdate(),'"+strTableName+"','"+strColName+"'," + strPkid + ",'" + strOldValue + "','" + strNewValue + "','"+strColArName+"')");
 
             if (icheck <= 0)
                 return false;

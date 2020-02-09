@@ -59,7 +59,7 @@ namespace Sales.Accounts
             //dtPrepareAccTree = cnn.GetDataTable("select swid, created_date, stat, acc_no, acc_type, acc_name, acc_level, acc_class, acc_note, acc_code, nvl(acc_parent,0) as acc_parent, created_user, acc_subject,ACC_REPORT,ACC_NATURE  from ACCOUNTS t " +
                                   //  " order by acc_no ");
             dtPrepareAccTree = cnn.GetDataTable("SELECT pkid,stat,created_date,created_user,acc_no,acc_name,ifnull(parent_id,0) parent_id ,notes,level,Acc_short_no " +
-                                " FROM sales.accounts order by acc_no");
+                                " FROM accounts order by acc_no");
 
             //tvAccTreeMain.Nodes.Clear();
           tvAccounts.Items.Clear();
