@@ -155,6 +155,57 @@
 
                     <RibbonButton Name="rbCurrency" 
                                   MinWidth="100"  
+                                  Label="العملات"
+                                  LargeImageSource="Images/Currency.png"  
+                                   Tag="frmCurrency"
+                                  Margin="5 0 0 0"
+                                  CommandParameter ="العملات"
+                                  Content="Images/Currency.png"  
+                                  Click="rbCurrency_Click" Height="66"  
+                                  >
+
+                        <RibbonButton.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC1ECF5" Offset="0"/>
+                                <GradientStop Color="#FF1753D3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RibbonButton.BorderBrush>
+
+                    </RibbonButton>
+
+
+
+                </RibbonGroup>
+                <RibbonGroup Header="العمليات المحاسبية" >
+
+                    <RibbonGroup.GroupSizeDefinitions>
+                        <RibbonGroupSizeDefinition>
+                        </RibbonGroupSizeDefinition>
+                    </RibbonGroup.GroupSizeDefinitions>
+
+                    <RibbonButton Name="rbJournal" 
+                                  MinWidth="100"  
+                                  Label="قيد اليومية"
+                                  LargeImageSource="Images/Journal.png"  
+                                   Tag="frmJournal"
+                                  Margin="0 0 0 0"
+                                  CommandParameter ="قيد اليومية"
+                                  Content="Images/Journal.png"  
+                                  Click="rbJournal_Click" Height="66"  
+                                  >
+
+                        <RibbonButton.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC1ECF5" Offset="0"/>
+                                <GradientStop Color="#FF1753D3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RibbonButton.BorderBrush>
+
+                    </RibbonButton>
+
+
+                    <RibbonButton Name="rbCurr1ency" 
+                                  MinWidth="100"  
                                   Label="العملاء"
                                   LargeImageSource="Images/Currency.png"  
                                    Tag="frmCurrency"

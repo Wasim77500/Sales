@@ -237,5 +237,10 @@ namespace Sales
         {
             new Accounts.frmCurrency().ShowDialog();
         }
+
+        private void rbJournal_Click(object sender, RoutedEventArgs e)
+        {
+            new Accounts.frmJournal().ShowDialog();
+        }
     }
 }
