@@ -106,10 +106,10 @@ namespace Sales
             RibbonTab rr = new RibbonTab();
             glb_function checkpriv = new glb_function();
             rbLogout.IsEnabled = true;
-
+            bool bFindButton = false;
             foreach (RibbonTab tab in FindLogicalChildren<RibbonTab>(this.RibbonWin))
             {
-                tab.Visibility = Visibility.Visible;
+                bFindButton = false;
 
                 foreach (RibbonButton button in FindLogicalChildren<RibbonButton>(tab))
                 {
@@ -117,6 +117,8 @@ namespace Sales
                     {
                         button.Visibility = Visibility.Visible;
                         button.Tag = "";
+                        bFindButton = true;
+
                     }
 
                     else if (!IsUserHasThisForm(button.Tag.ToString().Trim()))
@@ -127,14 +129,23 @@ namespace Sales
                         button.Label = "";
                         button.LargeImageSource = null;
                         button.Margin = new Thickness(0);
+                        
                     }
 
                     else
+                    {
                         button.Visibility = Visibility.Visible;
+                        bFindButton = true;
+                    }
+                      
 
                 }
 
+                if(bFindButton)
+                 tab.Visibility = Visibility.Visible;
             }
+            
+
             tabFile.IsSelected = true;
             tabFile.UpdateLayout();
             RibbonWin.UpdateLayout();
@@ -241,6 +252,16 @@ namespace Sales
         private void rbJournal_Click(object sender, RoutedEventArgs e)
         {
             new Accounts.frmJournal().ShowDialog();
+        }
+
+        private void rbCashREceipts_Click(object sender, RoutedEventArgs e)
+        {
+            new Accounts.frmCashReceipts().ShowDialog();
+        }
+
+        private void rbCashPayments_Click(object sender, RoutedEventArgs e)
+        {
+            new Accounts.frmCashPayments().ShowDialog();
         }
     }
 }

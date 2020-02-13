@@ -58,8 +58,8 @@ namespace Sales.Files
             ConnectionToMySQL cnn = new ConnectionToMySQL();
             DataTable dtFill = cnn.GetDataTable("select pkid, list_name from LIST_TYPE");
             lstListType.ItemsSource = dtFill.DefaultView;
-            lstListType.SelectedValuePath = "pkid".ToUpper();
-            lstListType.DisplayMemberPath = "list_name".ToUpper();
+            lstListType.SelectedValuePath = "pkid";
+            lstListType.DisplayMemberPath = "list_name";
 
             lstListType.SelectedIndex = -1;
         }

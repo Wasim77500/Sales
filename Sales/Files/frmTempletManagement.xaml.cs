@@ -307,8 +307,8 @@ namespace Sales.Files
                         " where list_name = '" + glb_function.GetCellValue(ref dgProperities, clmFreeListName.DisplayIndex, dgProperities.SelectedIndex) + "'");
 
                         frm.lstEditor.ItemsSource = dtFreeList.DefaultView;
-                        frm.lstEditor.SelectedValuePath = "value_member".ToUpper();
-                        frm.lstEditor.DisplayMemberPath = "display_member".ToUpper();
+                        frm.lstEditor.SelectedValuePath = "value_member";
+                        frm.lstEditor.DisplayMemberPath = "display_member";
                         frm.ShowDialog();
 
 
@@ -341,8 +341,8 @@ namespace Sales.Files
 
 
                         frm.lstEditor.ItemsSource = dtGetList.DefaultView;
-                        frm.lstEditor.SelectedValuePath = "pkid".ToUpper();
-                        frm.lstEditor.DisplayMemberPath = "name".ToUpper();
+                        frm.lstEditor.SelectedValuePath = "pkid";
+                        frm.lstEditor.DisplayMemberPath = "name";
                         frm.ShowDialog();
 
 

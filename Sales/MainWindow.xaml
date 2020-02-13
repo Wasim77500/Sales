@@ -31,7 +31,7 @@
 
 
             <RibbonTab x:Name="tabFile" Header="مـلـف" FontWeight="Normal"   IsSelected="True"  >
-                <RibbonGroup Header="إعدادات عامة" >
+                <RibbonGroup  >
 
                     <RibbonGroup.GroupSizeDefinitions>
                         <RibbonGroupSizeDefinition>
@@ -125,7 +125,7 @@
             </RibbonTab>
 
             <RibbonTab x:Name="tabAccount" Header="الحسابات" FontWeight="Normal"   IsSelected="True"  >
-                <RibbonGroup Header="حسابات النظام" >
+                <RibbonGroup >
 
                     <RibbonGroup.GroupSizeDefinitions>
                         <RibbonGroupSizeDefinition>
@@ -173,16 +173,6 @@
 
                     </RibbonButton>
 
-
-
-                </RibbonGroup>
-                <RibbonGroup Header="العمليات المحاسبية" >
-
-                    <RibbonGroup.GroupSizeDefinitions>
-                        <RibbonGroupSizeDefinition>
-                        </RibbonGroupSizeDefinition>
-                    </RibbonGroup.GroupSizeDefinitions>
-
                     <RibbonButton Name="rbJournal" 
                                   MinWidth="100"  
                                   Label="قيد اليومية"
@@ -204,15 +194,15 @@
                     </RibbonButton>
 
 
-                    <RibbonButton Name="rbCurr1ency" 
+                    <RibbonButton Name="rbCashReceipts" 
                                   MinWidth="100"  
-                                  Label="العملاء"
-                                  LargeImageSource="Images/Currency.png"  
-                                   Tag="frmCurrency"
+                                  Label="سند القبض"
+                                  LargeImageSource="Images/CashReceipts.png"  
+                                   Tag="frmCashReceipts"
                                   Margin="5 0 0 0"
-                                  CommandParameter ="العملاء"
-                                  Content="Images/Currency.png"  
-                                  Click="rbCurrency_Click" Height="66"  
+                                  CommandParameter ="سند القبض"
+                                  Content="Images/CashReceipts.png"  
+                                  Click="rbCashREceipts_Click" Height="66"  
                                   >
 
                         <RibbonButton.BorderBrush>
@@ -224,9 +214,31 @@
 
                     </RibbonButton>
 
+                    <RibbonButton Name="rbCashPayments" 
+                                  MinWidth="100"  
+                                  Label="سند الصرف"
+                                  LargeImageSource="Images/CashPayments.png"  
+                                   Tag="frmCashPayments"
+                                  Margin="5 0 0 0"
+                                  CommandParameter ="سند الصرف"
+                                  Content="Images/CashPayments.png"  
+                                  Click="rbCashPayments_Click" Height="66"  
+                                  >
 
+                        <RibbonButton.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFC1ECF5" Offset="0"/>
+                                <GradientStop Color="#FF1753D3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RibbonButton.BorderBrush>
+
+                    </RibbonButton>
+
+                    
+                    
 
                 </RibbonGroup>
+               
             </RibbonTab>
         </Ribbon>
 

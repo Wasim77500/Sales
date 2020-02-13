@@ -194,7 +194,7 @@ namespace Sales
             string strss = dtPri.Rows[0]["en_name"].ToString();
             
             DataRow[] childRows = dtPri.Select("[en_name]='" + strPriv + "'");
-            
+            string strp = childRows[0]["control_type"].ToString();
             if (childRows[0]["control_type"].ToString() == "Enability")
             {
                 if (childRows[0]["real_value"].ToString() == "1")

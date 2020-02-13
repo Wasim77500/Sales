@@ -68,6 +68,10 @@ namespace Sales
                 {
                     ((Xceed.Wpf.Toolkit.IntegerUpDown)childVisual).Value = 0;
                 }
+                else if (childVisual.GetType() == typeof(Xceed.Wpf.Toolkit.DoubleUpDown))
+                {
+                    ((Xceed.Wpf.Toolkit.DoubleUpDown)childVisual).Value = 0;
+                }
                 else
              
                 clearItems(childVisual);

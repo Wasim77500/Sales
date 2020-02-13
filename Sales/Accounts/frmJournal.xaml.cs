@@ -25,7 +25,7 @@ namespace Sales.Accounts
         {
             bLoad = true;
             InitializeComponent();
-            FillData();
+           
             dtpJourDate.SelectedDate = DateTime.Now;
             bLoad = false;
         }
@@ -220,6 +220,7 @@ namespace Sales.Accounts
 
             nmbExchangeRate.Value = Convert.ToDouble(dtCurr.Rows[0]["CURR_CHANGE_Rate"].ToString());
             iDecimalPlace= Convert.ToInt32(dtCurr.Rows[0]["curr_decimal"].ToString());
+            nmbCurrValue.FormatString = "N"+iDecimalPlace.ToString();
         }
 
       
@@ -272,18 +273,27 @@ namespace Sales.Accounts
                 
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private bool CheckEntries()
         {
-            if(dgvJourDetails.Items.Count<=0)
+
+            if (dgvJourDetails.Items.Count <= 0)
             {
                 glb_function.MsgBox("الرجاء ادخال البيانات التفصيلية للقيد");
-                return;
+                return false;
             }
-            if(txtDeptTotal.Text.Trim()!=txtCreditTotal.Text .Trim())
+            if (txtDeptTotal.Text.Trim() != txtCreditTotal.Text.Trim())
             {
                 glb_function.MsgBox("مبلغ المدين لا يساوي الدائن");
-                return;
+                return false;
             }
+
+            return true;
+        }
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (!CheckEntries())
+                return;
+           
 
             ConnectionToMySQL cnn = new ConnectionToMySQL();
             DataTable dtKeys = cnn.GetDataTable("select (select  ifnull(max( convert(  substring(jour_no,instr(jour_no,'-')+1),signed)),0)+1 FROM sales.journal_header where Branch_id="+glb_function.glb_strBranchPkid+" and trans_name='سند قيد') IssueNo,(select ifnull(max(pkid),0)+1 from sales.journal_header) pkid");
@@ -305,6 +315,7 @@ namespace Sales.Accounts
                 "," + strIssueNo +
                 ",str_to_date('" + dtpJourDate.SelectedDate.Value.ToString("dd/MM/yyyy")+ "','%d/%m/%Y')" +
                 ",'" + txtHeaderNote.Text.Trim() + "'" +
+                ",null" +  
                 ")");
             if(icheck <=0)
             {
@@ -351,7 +362,7 @@ namespace Sales.Accounts
            
 
             cnn.glb_commitTransaction();
-
+            GetData(txtPkid.Text);
             if (glb_function.MsgBox("تمت عملية الحفظ بنجاح" + "\n" + "هل تريد طباعة سند القيد؟", "", true) == false)
                 return;
 
@@ -376,12 +387,202 @@ namespace Sales.Accounts
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
             new glb_function().clearItems(this);
-            txtCreditTotal.Text = "0";
-            txtDeptTotal.Text = "0";
-            txtDeptTotal.Background = txtCreditTotal.Background = Brushes.LawnGreen;
+            PrepareForm();
+           
 
         }
 
-        
+        private void btnFind_Click(object sender, RoutedEventArgs e)
+        {
+            frmFindJournal frm = new frmFindJournal();
+            frm.strWhere = " and trans_name='سند قيد' and branch_id="+glb_function.glb_strBranchPkid + " ";
+            frm.ShowDialog();
+            if (frm.strPKid != "")
+                GetData(frm.strPKid);
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            if (!CheckEntries())
+                return;
+
+
+            ConnectionToMySQL cnn = new ConnectionToMySQL();
+            
+
+            int icheck = 0;
+
+            icheck = cnn.TranDataToDB("update journal_header set "+
+
+                " created_user=" + glb_function.glb_strUserId +
+
+                ",jour_date=str_to_date('" + dtpJourDate.SelectedDate.Value.ToString("dd/MM/yyyy") + "','%d/%m/%Y')" +
+                ",jour_note='" + txtHeaderNote.Text.Trim() + "'" +
+                " where pkid="+txtPkid.Text );
+            if (icheck <= 0)
+            {
+                glb_function.MsgBox("حدث خطأ اثناء تعديل البيانات الأساسية");
+                return;
+            }
+
+            icheck = cnn.TranDataToDB("delete from journal_details where header_id= " + txtPkid.Text);
+            if (icheck <= 0)
+            {
+                cnn.glb_commitTransaction();
+                glb_function.MsgBox("حدث خطأ اثناء حذف البيانات السابقة");
+                return;
+            }
+
+            for (int i = 0; i < dgvJourDetails.Items.Count; i++)
+            {
+                double dMainValue = 0;
+                double dCurrValue = 0;
+
+                if (Convert.ToDouble(glb_function.GetCellValue(ref dgvJourDetails, clmDept.DisplayIndex, i)) > 0)
+                {
+                    dMainValue = Convert.ToDouble(glb_function.GetCellValue(ref dgvJourDetails, clmDept.DisplayIndex, i));
+                    dCurrValue = Convert.ToDouble(glb_function.GetCellValue(ref dgvJourDetails, clmCurrValue.DisplayIndex, i));
+                }
+                else
+                {
+                    dMainValue = Convert.ToDouble(glb_function.GetCellValue(ref dgvJourDetails, clmCredit.DisplayIndex, i)) * -1;
+                    dCurrValue = Convert.ToDouble(glb_function.GetCellValue(ref dgvJourDetails, clmCurrValue.DisplayIndex, i)) * -1;
+                }
+
+                icheck = cnn.TranDataToDB("insert into journal_details values ((select ifnull(max(b.pkid),0)+1 from journal_details b )" +
+               ",'فعال'" +
+               ",sysdate()" +
+               "," + glb_function.glb_strUserId +
+                "," + txtPkid.Text +
+                "," + glb_function.GetCellValue(ref dgvJourDetails, clmCurrencyId.DisplayIndex, i) +
+                "," + glb_function.GetCellValue(ref dgvJourDetails, clmAccId.DisplayIndex, i) +
+                "," + dMainValue +
+                "," + dCurrValue +
+                "," + glb_function.GetCellValue(ref dgvJourDetails, clmExchangeRate.DisplayIndex, i) +
+                ",'" + glb_function.GetCellValue(ref dgvJourDetails, clmJourNote.DisplayIndex, i) + "'" +
+               ")");
+                if (icheck <= 0)
+                {
+                    cnn.glb_RollbackTransaction();
+                    glb_function.MsgBox("حدث خطأ اثناء تعديل التفاصيل");
+                    return;
+                }
+
+            }
+
+
+            cnn.glb_commitTransaction();
+            GetData(txtPkid.Text);
+            if (glb_function.MsgBox("تمت عملية التعديل بنجاح" + "\n" + "هل تريد طباعة سند القيد؟", "", true) == false)
+                return;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            new UserTemplate().GetPrivForThisForm(this);
+            
+
+            PrepareForm();
+        }
+
+        private void PrepareForm()
+        {
+            FillData();
+            txtCreditTotal.Text = "0";
+            txtDeptTotal.Text = "0";
+            txtDeptTotal.Background = txtCreditTotal.Background = Brushes.LawnGreen;
+            if (UserTemplate.HasPrivilege("btnSave"))
+                btnSave.IsEnabled = true;
+
+            btnUpdate.IsEnabled = false;
+        }
+
+        private void GetData(string strPkid)
+        {
+            
+            new glb_function().clearItems(this);
+           
+            ConnectionToMySQL cnn = new ConnectionToMySQL();
+            DataTable dtJournalData = cnn.GetDataTable("SELECT h.Pkid, h.stat, Branch_id, jour_no, trans_name, trans_id, date_format(jour_date,'%d/%m/%Y') jour_date, jour_note,Person, " +
+                          "  d.pkid dpkid, d.stat dstat, curr_id,(select c.curr_name from sales.currency c where c.pkid=d.curr_id) curr_name, acc_id, main_value, jour_value, exchange_Rate, jour_details, " +
+                           " a.acc_no, a.acc_name " +
+                          "  FROM journal_header h " +
+                          "  join journal_details d " +
+                          " join accounts a on(a.pkid = d.acc_id) " +
+                          "  on(h.pkid = d.header_id) " +
+                          "  where h.pkid =  " + strPkid +" order by d.pkid");
+            bLoad = true;
+            
+            txtPkid.Text = strPkid;
+
+            txtJourNo.Text = dtJournalData.Rows[0]["jour_no"].ToString();
+            dtpJourDate.SelectedDate = DateTime.ParseExact(dtJournalData.Rows[0]["jour_date"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            txtHeaderNote.Text = dtJournalData.Rows[0]["jour_note"].ToString();
+            txtCreditTotal.Text = "0";
+            txtDeptTotal.Text = "0";
+            for (int i = 0; i < dtJournalData.Rows.Count; i++)
+            {
+                clsJourDetail newRow = new clsJourDetail();
+              
+                if (Convert.ToDouble(dtJournalData.Rows[i]["main_value"].ToString()) > 0)
+                {
+                    newRow.clmDept = dtJournalData.Rows[i]["main_value"].ToString();                   
+                    newRow.clmCurrValue= dtJournalData.Rows[i]["jour_value"].ToString();
+                    newRow.clmCredit = "0";
+                }
+                   
+                else
+                {
+                    newRow.clmCredit = (Convert.ToDouble(dtJournalData.Rows[i]["main_value"].ToString()) * -1).ToString();
+                    newRow.clmCurrValue = (Convert.ToDouble(dtJournalData.Rows[i]["jour_value"].ToString()) * -1).ToString();
+                    newRow.clmDept = "0";
+                }
+                    
+
+
+                newRow.clmPKid = dtJournalData.Rows[i]["dpkid"].ToString();
+               
+                
+                newRow.clmCurrencyId = dtJournalData.Rows[i]["curr_id"].ToString();
+                newRow.clmCurrencyName = dtJournalData.Rows[i]["curr_name"].ToString();
+                newRow.clmAccId = dtJournalData.Rows[i]["acc_id"].ToString();
+                newRow.clmAccNo = dtJournalData.Rows[i]["acc_no"].ToString();
+                newRow.clmAccName = dtJournalData.Rows[i]["acc_name"].ToString();
+
+                newRow.clmJourNote = dtJournalData.Rows[i]["jour_details"].ToString();
+                newRow.clmExchangeRate = dtJournalData.Rows[i]["exchange_Rate"].ToString();
+
+                dgvJourDetails.Items.Add(newRow);
+
+
+                txtCreditTotal.Text = (Convert.ToDouble(txtCreditTotal.Text.Trim()) + Convert.ToDouble(newRow.clmCredit)).ToString();
+                txtDeptTotal.Text = (Convert.ToDouble(txtDeptTotal.Text.Trim()) + Convert.ToDouble(newRow.clmDept)).ToString();
+
+                
+            }
+
+
+          
+            if (txtCreditTotal.Text.Trim() == txtDeptTotal.Text.Trim())
+            {
+
+                txtDeptTotal.Background = Brushes.LawnGreen;
+                txtCreditTotal.Background = Brushes.LawnGreen;
+            }
+            else
+            {
+                txtDeptTotal.Background = Brushes.Red;
+                txtCreditTotal.Background = Brushes.Red;
+            }
+
+
+            if (UserTemplate.HasPrivilege("btnUpdate"))
+                btnUpdate.IsEnabled = true;
+
+
+
+            btnSave.IsEnabled = false;
+            bLoad = false;
+        }
     }
 }

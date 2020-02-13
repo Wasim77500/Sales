@@ -58,9 +58,10 @@
                        />
             <ComboBox Name="lstFormType" Width="150" Height="25"  >
                 <ComboBoxItem Content="ملف" Tag="File"/>
-                <ComboBoxItem Content="إدارة الأصول" Tag="Assets"/>
-                <ComboBoxItem Content="عمليات الأصول" Tag="Operations"/>
-                <ComboBoxItem Content="جرد الأصول" Tag="Inventory"/>
+                <ComboBoxItem Content="الحسابات" Tag="Accounts"/>
+                <ComboBoxItem Content="إدارة المخزون" Tag="Inventory"/>
+                <ComboBoxItem Content="المشتريات" Tag="Purchases"/>
+                <ComboBoxItem Content="المبيعات" Tag="Sales"/>
                 <ComboBoxItem Content="التقارير" Tag="Reports"/>
             </ComboBox>
             <CheckBox Name="ckbMULTI_FORM_FOR_USER"
