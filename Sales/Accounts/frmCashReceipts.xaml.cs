@@ -293,6 +293,8 @@ namespace Sales.Accounts
             FillData();
             if (UserTemplate.HasPrivilege("btnSave"))
                 btnSave.IsEnabled = true;
+            else
+                btnSave.IsEnabled = false;
 
             btnUpdate.IsEnabled = false;
         }

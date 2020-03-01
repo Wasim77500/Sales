@@ -263,5 +263,35 @@ namespace Sales
         {
             new Accounts.frmCashPayments().ShowDialog();
         }
+
+        private void rbWareHouse_Click(object sender, RoutedEventArgs e)
+        {
+            new Inventory.frmAddWarehouse().ShowDialog();
+        }
+
+        private void rbItems_Click(object sender, RoutedEventArgs e)
+        {
+            new Inventory.frmItems().ShowDialog();
+        }
+
+        private void rbStockAdjustment_Click(object sender, RoutedEventArgs e)
+        {
+            new Inventory.frmStackAdjustment().ShowDialog();
+        }
+
+        private void rbVendors_Click(object sender, RoutedEventArgs e)
+        {
+            new Purchases.frmVendors().ShowDialog();
+        }
+
+        private void rbPurchaseInvoice_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rbPurchaseReturn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

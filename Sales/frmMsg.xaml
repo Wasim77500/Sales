@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sales"
         mc:Ignorable="d"  AllowsTransparency="True" WindowStyle="None" Background="#F5F5DD"
-        Title="" Height="200" Width="300" BorderBrush="Black" BorderThickness="3,0,3,3" WindowStartupLocation="CenterScreen"  FlowDirection="RightToLeft" Loaded="Window_Loaded">
+        Title="" Height="200" Width="400" BorderBrush="Black" BorderThickness="3,0,3,3" WindowStartupLocation="CenterScreen"  FlowDirection="RightToLeft" Loaded="Window_Loaded">
     <StackPanel>
         <Grid Height="30" MouseDown="Grid_MouseDown" Background="Black">
             <Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
 
 
         <Grid Height="167" >
-            <TextBlock x:Name="lblMsg" TextAlignment="Center" TextWrapping="Wrap"  Text=" test sdfslkjsdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd fsdfs" Margin="35,3,35,72"   VerticalAlignment="Center" HorizontalAlignment="Center" Width="224" FontFamily="Arial" FontSize="20" Foreground="Maroon"/>
+            <TextBlock x:Name="lblMsg" TextAlignment="Center" TextWrapping="Wrap"  Text=" test sdfslkjsdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd fsdfs" Margin="35,3,35,72"   VerticalAlignment="Center" HorizontalAlignment="Center" Width="324" FontFamily="Arial" FontSize="20" Foreground="Maroon"/>
 
             <StackPanel x:Name="stpYesNO" Orientation="Horizontal" Margin="0,106,0,29" HorizontalAlignment="Center">
                 <Button Name="btnYes" 

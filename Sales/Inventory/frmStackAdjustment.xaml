@@ -1,0 +1,285 @@
+﻿<Window x:Class="Sales.Inventory.frmStackAdjustment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sales"
+          xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"  AllowsTransparency="True"
+        WindowStyle="None"
+        Background="#F5F5DD"
+        Title="التعديل المخزني" Height="500" Width="550" 
+        BorderBrush="#0b353e" 
+        BorderThickness="3,0,3,3" 
+        WindowStartupLocation="CenterScreen"  
+        FlowDirection="RightToLeft"
+        Loaded="Window_Loaded"
+        >
+    <StackPanel>
+        <Grid Height="30" MouseDown="Grid_MouseDown" Background="#0b353e">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="1*"/>
+
+
+            </Grid.ColumnDefinitions>
+            <Image Source="../Images/Logo.png" Width="24" Grid.Column="0" MouseDown="Image_MouseDown_1">
+
+
+            </Image>
+
+            <TextBlock x:Name="txtTitel"  Text="التعديل المخزني" Grid.Column="1" TextAlignment="Center"  Foreground="#C46210" HorizontalAlignment="Stretch" VerticalAlignment="Center"  FontWeight="Bold" FontFamily="Arial" FontSize="16"  />
+
+
+
+            <Image Source="../Images/Delete.png" Width="24" Grid.Column="2"  Cursor="Hand" MouseDown="Image_MouseDown"></Image>
+        </Grid>
+
+
+        <StackPanel Orientation="Horizontal" Margin="10 5 0 0"  >
+            <TextBlock Style="{StaticResource myLable}"
+                      Margin="0 0 0 0" Width="130" 
+                       Text="رقم التعديل المخزني"   
+                       />
+            <TextBox Name="txtStockAdjNo" Width="200" IsEnabled="False"  />
+            <Button Name="btnFind" 
+                    Style="{StaticResource SmallBut}"
+                    Background="#F5F5DD" 
+                    Margin="5 0 0 0" 
+                    Click="btnFind_Click">
+                <Image  Source="../Images/Search.png" Width="20"/>
+            </Button>
+            <TextBox x:Name="txtPkid" Width="0" />
+            
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" 
+                            Margin="10 10 0 5" 
+                            HorizontalAlignment="left"
+                            VerticalAlignment="Center"
+                            >
+
+
+            <TextBlock   Style="{StaticResource myLable}"
+                              
+                               FontWeight="Regular"
+                                 FontSize="22"
+                             Margin="0 0 0 0"
+                               Width="100" 
+                             Text="الفرع"   
+                            />
+            <ComboBox Name="lstBranches"
+                             Width="150"
+                             Height="24" SelectionChanged="lstBranches_SelectionChanged"
+                             
+                            />
+
+            <TextBlock Style="{StaticResource myLable}"
+                               FontWeight="Normal"
+                               FontSize="22"
+                            Margin="10 0 0 0"  
+                               
+                               Width="110" 
+                             Text="المخزن"   
+                             />
+            <ComboBox Name="lstWarehouses"
+                             Width="150"
+                             Height="24"
+                             
+                            />
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10 5 0 0"  >
+            <TextBlock Style="{StaticResource myLable}"
+                      Margin="0 0 0 0" Width="100" 
+                       Text="مـلاحـظـات"   
+                       />
+            <TextBox Name="txtStockAdjNote" Width="420" />
+            <TextBox x:Name="txtLevel" Width="0" />
+
+        </StackPanel>
+
+        <GroupBox Header="التكلفة" 
+                  
+                  Style="{StaticResource myGroupBox}">
+            <StackPanel Height="59">
+                <StackPanel Orientation="Horizontal" 
+                            Margin="5 0 0 5" 
+                            HorizontalAlignment="left"
+                            VerticalAlignment="Center"
+                            >
+
+
+                    <TextBlock   Style="{StaticResource myLable}"
+                              
+                               FontWeight="Regular"
+                                 FontSize="22"
+                             Margin="0 0 0 0"
+                               Width="100" 
+                             Text="رقم الصنف"   
+                            />
+                    <TextBox Name="txtItemNo"
+                             Width="120"
+                             Height="24"
+                             IsEnabled="False"
+                            />
+                    
+                    <TextBox x:Name="txtItemId" Width="0" />
+                    <Button Name="btnFindItem" 
+                    Style="{StaticResource SmallBut}"
+                    Background="#F5F5DD" 
+                    Margin="5 0 0 0" 
+                    Click="btnFindItem_Click">
+                        <Image  Source="../Images/Search.png" Width="20"/>
+                    </Button>
+                    <TextBlock Style="{StaticResource myLable}"
+                               FontWeight="Normal"
+                               FontSize="22"
+                            Margin="10 0 0 0"  
+                               
+                               Width="110" 
+                             Text="اسم الصنف"   
+                             />
+
+                    <TextBox Name="txtItemName"
+                             Width="150"
+                             Height="24"
+                             IsEnabled="False"
+                            />
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" 
+                            Margin="5 0 0 5" 
+                            HorizontalAlignment="left"
+                            VerticalAlignment="Center"
+                            >
+
+
+                    <TextBlock   Style="{StaticResource myLable}"
+                              
+                               FontWeight="Regular"
+                                 FontSize="22"
+                             Margin="0 0 0 0"
+                               Width="100" 
+                             Text="كمية المخزون"   
+                            />
+
+                    <xctk:DoubleUpDown Name="nmbQtyOnHand"  
+                                     
+                                       FontWeight="Normal"
+                                       TabIndex="30" 
+                                       FlowDirection="RightToLeft"   
+                                      IsEnabled="False"
+                                       Height="24"  
+                                       
+                                      Width="150"
+                                       Value="0"
+                                      
+                                       />
+                    <TextBlock   Style="{StaticResource myLable}"
+                              
+                               FontWeight="Regular"
+                                 FontSize="22"
+                             Margin="10 0 0 0"
+                               Width="110" 
+                             Text="كمية التعديل"   
+                            />
+
+                    <xctk:DoubleUpDown Name="nmbQty"  
+                                     
+                                       FontWeight="Normal"
+                                       TabIndex="30" 
+                                       FlowDirection="RightToLeft"   
+                                      
+                                       Height="24"  
+                                       
+                                      Width="120"
+                                       Value="0"
+                                      
+                                       />
+                    <Button Name="btnAdd" 
+                            Style="{StaticResource SmallBut}" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center"
+                            Width="25"
+                            Margin="5 0 0 0" 
+                            Click="btnAdd_Click">
+
+                        <Image Source="../Images/Add_h.png" Width="15" />
+
+                    </Button>
+                    
+                    
+                </StackPanel>
+
+
+            </StackPanel>
+
+
+
+        </GroupBox>
+
+        <DataGrid Style="{StaticResource myGrid}" x:Name="dgvStockAdjustment" ColumnHeaderStyle="{StaticResource HeaderStyle}" IsReadOnly="True"   Height="230" Margin="0 5 0 0"   >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="clmPKid" Header="رقم التصنيف" Binding="{Binding clmPKid}" MaxWidth="0" Width="0" />
+                <DataGridTextColumn x:Name="clmItemId" Header="رقم الصنف" Binding="{Binding clmItemId}" MaxWidth="0" Width="0" />
+
+
+                <DataGridTextColumn x:Name="clmItemNo" Header="رقم الصنف" Binding="{Binding clmItemNo}" Width="80" />
+                <DataGridTextColumn x:Name="clmItemName" Header="اسم الصنف" Binding="{Binding clmItemName}" Width="190" />
+                <DataGridTextColumn x:Name="clmQtyOnHand" Header="كمية المخزون" Binding="{Binding clmQtyOnHand}" Width="100" />
+                <DataGridTextColumn x:Name="clmRequiredQty" Header="كمية التعديل" Binding="{Binding clmRequiredQty}"  Width="100" />
+               
+                <DataGridTemplateColumn Header="حذف" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button  Name="btnDelete" Style="{StaticResource BlkOrngBut}" Width="60" Height="22" Click="btnDelete_Click">
+                                حذف
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+
+
+
+        <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+            <Button Name="btnNew" 
+                    Margin="0 0 1 0"
+                      Style="{StaticResource  BlkOrngBut}"  
+                    Content="جديد"
+                   
+                  
+                    Click="btnNew_Click"
+                   >
+
+            </Button>
+            <Button x:Name="btnSave"
+                     Style="{StaticResource BlkOrngBut}" 
+                    Content="حفظ"
+                    Margin="0 0 1 0"
+                   
+                    Click="btnSave_Click">
+
+            </Button>
+          
+
+            <Button Name="btnClose" 
+                    Style="{StaticResource BlkOrngBut}" 
+                      Content="خروج"
+                   Margin="0 0 1 0"
+                    Click="btnClose_Click">
+
+            </Button>
+        </StackPanel>
+
+
+
+    </StackPanel>
+   
+</Window>

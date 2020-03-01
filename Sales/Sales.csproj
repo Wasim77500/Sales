@@ -55,6 +55,7 @@
     <Reference Include="MySql.Data, Version=8.0.18.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Xml" />
@@ -150,9 +151,30 @@
     <Compile Include="frmMsg.xaml.cs">
       <DependentUpon>frmMsg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\frmFindItem.xaml.cs">
+      <DependentUpon>frmFindItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\frmItems.xaml.cs">
+      <DependentUpon>frmItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\frmAddWarehouse.xaml.cs">
+      <DependentUpon>frmAddWarehouse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\frmStackAdjustment.xaml.cs">
+      <DependentUpon>frmStackAdjustment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\frmFindVendor.xaml.cs">
+      <DependentUpon>frmFindVendor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\frmVendors.xaml.cs">
+      <DependentUpon>frmVendors.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserTemplate.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window2.xaml.cs">
+      <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
     <Page Include="Accounts\frmAccountTree.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -226,6 +248,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Inventory\frmFindItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Inventory\frmItems.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Inventory\frmAddWarehouse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Inventory\frmStackAdjustment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -252,7 +290,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Purchases\frmFindVendor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Purchases\frmVendors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -346,6 +396,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\CashPayments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sales\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Items.png" />
+    <Resource Include="Images\PurchaseInvoice.png" />
+    <Resource Include="Images\Vendors.png" />
+    <Resource Include="Images\Warehouse.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
